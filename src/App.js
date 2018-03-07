@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import Greeting from './Components/Greeting.js';
-import './App.css';
+import { Clock, TodaysDate } from './Components/TimeDate.js';
+
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       time: new Date().getTime(),
-      timeFormat: {
+      dateFormat: {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
-        day: 'numeric',
+        day: 'numeric'
+      },
+      timeFormat: {
         hour: '2-digit',
         minute: '2-digit'
       },
@@ -22,6 +26,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Clock {...this.state}/>
+        <TodaysDate {...this.state}/>
         <Greeting {...this.state}/>
       </div>
     );
