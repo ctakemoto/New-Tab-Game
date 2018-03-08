@@ -25,10 +25,12 @@ class App extends Component {
 }
   render() {
     return (
-      <div className="App">
-        <Clock {...this.state}/>
-        <TodaysDate {...this.state}/>
-        <Greeting {...this.state}/>
+      <div className='app'>
+        <div className='header'>
+          <Clock {...this.state}/>
+          <TodaysDate {...this.state}/>
+          <Greeting {...this.state}/>
+        </div>
       </div>
     );
   }

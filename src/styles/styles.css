@@ -1,5 +1,22 @@
-.App {
-  display: grid; }
-
 .clock {
-  size: 28pt; }
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  justify-self: start; }
+
+.date {
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
+  justify-self: end; }
+
+.app {
+  display: grid;
+  grid-template: 1fp 3fp 1fp/75px repeat(1pf, 3); }
+
+.header {
+  font-size: 28px; }
+
+.greeting {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  font-size: 50px;
+  justify-self: center; }
