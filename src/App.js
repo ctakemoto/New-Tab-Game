@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Greeting from './Components/Greeting.js';
+import SearchBar from './Components/SearchBar.js';
 import { Clock, TodaysDate } from './Components/TimeDate.js';
 
 
@@ -30,6 +31,7 @@ class App extends Component {
           <Clock {...this.state}/>
           <TodaysDate {...this.state}/>
           <Greeting {...this.state}/>
+          <SearchBar {...this.state}/>
         </div>
       </div>
     );
