@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export class Clock extends Component {
-    render(){
-        var currentTime = new Date(this.props.time);
-        return(
-            <div className="clock">
-                {currentTime.toLocaleTimeString(this.props.locale, this.props.timeFormat)}
-            </div>
-        );
-    }
+export const Clock = props => {
+
+    var currentTime = new Date(props.time);
+    return(
+        <div className="clock">
+            {currentTime.toLocaleTimeString(props.locale, props.timeFormat)}
+        </div>
+    );
+
 }
 
-export class TodaysDate extends Component {
-    render () {
-        var currentTime = new Date(this.props.time);
-        return(
-            <div className="date">{currentTime.toLocaleDateString(this.props.locale, this.props.dateFormat)}</div>
-        );
-    }
+export const TodaysDate = props => {
+
+    var currentTime = new Date(props.time);
+    return(
+        <div className="date">{currentTime.toLocaleDateString(props.locale, props.dateFormat)}</div>
+    );
+    
+}
+TodaysDate.propTypes = {
+    locale: PropTypes.string,
+    dateFormat: PropTypes.object
 }
 
+Clock.propTypes = {
+    locale: PropTypes.string,
+    timeFormat: PropTypes.object
+}

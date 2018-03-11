@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Greeting extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //time interval start and finish in hhmm format followed by greeting
-          greetings: [[500,1159,'Good Morning'],
-                [1200,1659,'Good Afternoon'],
-                [1700,2159,'Good Evening'],
-                [2200,2400,'Good Night'],
-                [0,459,'Good Night']]
-        }
-    
-    }
+const Greeting = props => {
 
-    timeInInterval = (time, start, finish) => {
+    //time interval start and finish in hhmm format followed by greeting
+    const greetings = [[500,1159,'Good Morning'],
+        [1200,1659,'Good Afternoon'],
+        [1700,2159,'Good Evening'],
+        [2200,2400,'Good Night'],
+        [0,459,'Good Night']]
+
+
+    const timeInInterval = (time, start, finish) => {
         //returns True if time is between start and finish and False if not
         var tempTime = new Date(time);
         
@@ -29,22 +25,21 @@ class Greeting extends Component {
         }
     }
 
-    pickGreeting = () => {
-        for (var i = 0; i < this.state.greetings.length; i++){
+    const pickGreeting = () => {
+        for (var i = 0; i < greetings.length; i++){
             
-            if (this.timeInInterval(this.props.time, this.state.greetings[i][0],this.state.greetings[i][1])){
-                return this.state.greetings[i][2];
+            if (timeInInterval(props.time, greetings[i][0],greetings[i][1])){
+                return greetings[i][2];
             }
         }
     }
-    render(){
-        
-        return(
-            <div className="greeting">
-            {this.pickGreeting()} 
-            </div>
-        );
-    }
+
+    return(
+        <div className="greeting">
+        {pickGreeting()} 
+        </div>
+    );
+
 }
 
 Greeting.propTypes = {

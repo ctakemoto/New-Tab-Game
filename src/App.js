@@ -10,6 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       time: new Date().getTime(),
+    };
+    this.settings = {
       dateFormat: {
         weekday: 'long',
         year: 'numeric',
@@ -28,11 +30,11 @@ class App extends Component {
     return (
       <div className='app'>
         <div className='header'>
-          <Clock {...this.state}/>
-          <TodaysDate {...this.state}/>
-          <Greeting {...this.state}/>
-          <SearchBar {...this.state}/>
+          <TodaysDate {...this.state} {...this.settings}/>
+          <Clock {...this.state} {...this.settings}/>
+          <Greeting {...this.state} {...this.settings}/>
         </div>
+        <SearchBar {...this.state} {...this.settings}/>
       </div>
     );
   }
