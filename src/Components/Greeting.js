@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 const Greeting = props => {
 
     //time interval start and finish in hhmm format followed by greeting
-    const greetings = [[500,1159,'Good Morning'],
+    const greetings = [
+        [500,1159,'Good Morning'],
         [1200,1659,'Good Afternoon'],
         [1700,2159,'Good Evening'],
-        [2200,2400,'Good Night'],
-        [0,459,'Good Night']]
+        [2200,2459,'Good Night'],
+        [0,459,'Good Night']
+    ]
 
 
     const timeInInterval = (time, start, finish) => {
@@ -32,11 +34,13 @@ const Greeting = props => {
                 return greetings[i][2];
             }
         }
+        //case when not falling in any time interval
+        return 'Welcome to the time vortex';
     }
 
     return(
         <div className="greeting">
-        {pickGreeting()} 
+            {pickGreeting()} 
         </div>
     );
 
