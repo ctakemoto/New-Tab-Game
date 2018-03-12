@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic");
 /* Colors */
 .clock {
   grid-row: 1 / span 1;
@@ -17,7 +18,8 @@ class modifiers: name-name--modifier
 */
 .app {
   display: grid;
-  grid-template: repeat(1fp, 12)/75px repeat(1fp, 3); }
+  grid-template: repeat(1fp, 12)/75px repeat(1fp, 3);
+  font-family: "Nanum Gothic", sans-serif; }
 
 .header {
   font-size: 28px; }
@@ -32,7 +34,7 @@ class modifiers: name-name--modifier
   padding: 15px;
   box-shadow: 5px 5px 10px grey;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 18px;
   width: 80%;
   min-width: 600px; }
   .searchbar .searchbar__searchbox {
@@ -44,7 +46,7 @@ class modifiers: name-name--modifier
     grid-column: 1 span 1;
     height: 30px;
     overflow: hidden;
-    line-height: 16px;
+    line-height: 18px;
     width: calc(100% - 75px); }
   .searchbar .searchbar__button {
     border-radius: 0 5px 5px 0;
@@ -54,6 +56,6 @@ class modifiers: name-name--modifier
     margin: 0 auto 0 0;
     grid-column: 2 span 1;
     height: 42px;
-    line-height: 16px;
+    line-height: 18px;
     vertical-align: top;
     width: 50px; }

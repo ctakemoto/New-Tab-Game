@@ -2,7 +2,7 @@
     padding: 15px;
     box-shadow: 5px 5px 10px grey;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 18px;
     width: 80%;
     min-width: 600px;
     
@@ -15,7 +15,7 @@
         grid-column: 1 span 1;
         height: 30px;
         overflow:hidden;
-        line-height:16px;
+        line-height:18px;
         width: calc(100% - 75px);
     }
 
@@ -27,7 +27,7 @@
         margin: 0 auto 0 0;
         grid-column: 2 span 1;
         height: 42px;
-        line-height:16px;
+        line-height:18px;
         vertical-align:top;
         width: 50px;
     }

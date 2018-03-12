@@ -8,6 +8,7 @@ class modifiers: name-name--modifier
 .app {
     display: grid;
     grid-template: repeat(1fp, 12) / 75px repeat(1fp, 3);
+    font-family: $font-style;
 }
 
 .header {
