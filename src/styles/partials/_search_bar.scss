@@ -6,6 +6,9 @@
     width: 80%;
     min-width: 600px;
     background-color: $light-shade;
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    justify-self: center;
     
     .searchbar__searchbox {
         border-radius: 5px 0 0 5px;

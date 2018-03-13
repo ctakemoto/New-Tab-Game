@@ -15,12 +15,12 @@ html {
 .clock {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
-  align-self: start; }
+  justify-self: start; }
 
 .date {
   grid-row: 1 / span 1;
   grid-column: 3 / span 1;
-  align-self: end; }
+  justify-self: end; }
 
 /*
 Naming
@@ -30,7 +30,8 @@ class modifiers: name-name--modifier
 */
 .app {
   display: grid;
-  grid-template: 75px repeat(1fp, 3)/repeat(1fp, 12);
+  grid-template: 75px repeat(1fp, 12)/min-content(150px) auto min-content(150px);
+  grid-row-gap: 20px;
   font-family: "Nanum Gothic", sans-serif;
   margin: 0; }
 
@@ -38,10 +39,10 @@ class modifiers: name-name--modifier
   font-size: 28px; }
 
 .greeting {
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
   grid-column: 2 / span 1;
   font-size: 50px;
-  align-self: center; }
+  justify-self: center; }
 
 .searchbar {
   padding: 15px;
@@ -50,7 +51,10 @@ class modifiers: name-name--modifier
   font-size: 18px;
   width: 80%;
   min-width: 600px;
-  background-color: #F7F9FA; }
+  background-color: #F7F9FA;
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  justify-self: center; }
   .searchbar .searchbar__searchbox {
     border-radius: 5px 0 0 5px;
     border: 1px solid grey;

@@ -29,12 +29,11 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <div className='header'>
-          <TodaysDate {...this.state} {...this.settings}/>
-          <Clock {...this.state} {...this.settings}/>
-          <Greeting {...this.state} {...this.settings}/>
-        </div>
+
+        <TodaysDate {...this.state} {...this.settings}/>
+        <Clock {...this.state} {...this.settings}/>
         <SearchBar {...this.state} {...this.settings}/>
+        <Greeting {...this.state} {...this.settings}/>
       </div>
     );
   }

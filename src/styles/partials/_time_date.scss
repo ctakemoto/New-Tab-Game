@@ -2,11 +2,11 @@
 .clock {
     grid-row: 1 / span 1;
     grid-column: 1 / span 1;
-    align-self: start;
+    justify-self: start;
 }
 
 .date {
     grid-row: 1 / span 1;
     grid-column: 3 / span 1;
-    align-self: end;
+    justify-self: end;
 }
