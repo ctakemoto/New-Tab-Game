@@ -15,12 +15,12 @@
         border: 1px solid grey;
         border-right:none;
         padding: 5px;
-        margin: 0 0 0 auto;
+        margin: 0;
         grid-column: 1 span 1;
         height: 40px;
         overflow:hidden;
         line-height:18px;
-        width: calc(100% - 75px);
+        width: calc(100% - 50px);
     }
 
     .searchbar__button {
@@ -28,7 +28,7 @@
         border: 1px solid grey;
         border-left: none;
         padding: 5px;
-        margin: 0 auto 0 0;
+        margin: 0;
         grid-column: 2 span 1;
         height: 40px;
         line-height:18px;
