@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 export const Square = props => {
     return (
-        <div className={'game__square ' + props.type} onClick={() => props.handleClick}>      
+        <div    className={'game__square ' + props.type +' '+ props.state} 
+                onClick={() => props.clickCallback(props.coord)}>    
             {props.value}
         </div>
     );
@@ -12,15 +13,17 @@ export const Board = props => {
 
     return(
         <div className='game__board'>
-            {props.squares.map((nested, yindex )=>
-                <div className='game__board__col'>
-                    {nested.map((value, xindex) =>
+            {props.squares.map((nested, xindex )=>
+                <div className='game__board__col' key={xindex}>
+                    {nested.map((element, yindex) =>
                         <Square 
                             key={[xindex, yindex]}
-                            value={value} 
-                            //value={[xindex, yindex]}
-                            type={value === 'x' ? 'bomb':''}
-                        />
+                            value={element.value} 
+                            state={element.state}
+                            type={element.type}
+                            coord={[xindex, yindex]}
+                            clickCallback={props.clickCallback}
+                    />
                     )}
                 </div>
             )}
@@ -42,8 +45,12 @@ class Game extends Component {
         };
     }
 
-    handleClick = (i) => {
-
+    handleClick = (coords) => {
+        var board = this.state.squares;
+        board[coords[0]][coords[1]].state = 'clicked';
+        this.setState({
+            squares: board
+        });
     }
 
     componentWillMount = () => {
@@ -52,11 +59,11 @@ class Game extends Component {
 
     initGame = () => {
         //each row is it's own array
-        var board = new Array(this.state.boardDimensions).fill(0).map(x => Array(this.state.boardDimensions).fill(0));
+        var board = new Array(this.state.boardDimensions).fill(0).map(x => Array(this.state.boardDimensions).fill().map(x => ({value:0, state:'unclicked', type:'safe'})));
 
         //chose a random number of bombs between a fourth and a third the number of squares
-        //const numBombs = this.randInt(this.state.numSquares/4,this.state.numSquares/3)
-        const numBombs = 10;
+        const numBombs = this.randInt(this.state.numSquares/4,this.state.numSquares/3)
+
         var currentSquare;
 
         //populate bombs randomly on the board
@@ -64,8 +71,9 @@ class Game extends Component {
         for(var i=0; i < numBombs; i++){
             currentSquare = this.randSquare();
             //check to see if the square has already been set as a bomb before
-            if (board[currentSquare[0]][currentSquare[1]] !== 'x'){
-                board[currentSquare[0]][currentSquare[1]] = 'x';
+            if (board[currentSquare[0]][currentSquare[1]].type === 'safe'){
+                board[currentSquare[0]][currentSquare[1]].value = 'x';
+                board[currentSquare[0]][currentSquare[1]].type = 'bomb';
                 board = this.setSurroundingNumbers(board, currentSquare);
             }
             else {
@@ -89,12 +97,11 @@ class Game extends Component {
         let xmax = currentSquare[0]+1 >= this.state.boardDimensions ? this.state.boardDimensions-1 : currentSquare[0]+1;
         let ymax = currentSquare[1]+1 >= this.state.boardDimensions ? this.state.boardDimensions-1 : currentSquare[1]+1;
 
-        console.log(currentSquare,': ','(', xmin, ymin, ')','(', xmax,ymax,')');
         for(var i=xmin; i <= xmax; i++ ){
             for(var j=ymin; j <= ymax; j++){
                 //If the square being looked at isn't a bomb add 1 to it's number.
-                if(board[i][j] !== 'x') {
-                    board[i][j] += 1;
+                if(board[i][j].type === 'safe') {
+                    board[i][j].value += 1;
                 }
             }
         }
@@ -118,7 +125,7 @@ class Game extends Component {
     render(){
         return (
             <div className='game'>
-                <Board squares={this.state.squares}/>
+                <Board squares={this.state.squares} clickCallback={this.handleClick}/>
             </div>
         );
     }
