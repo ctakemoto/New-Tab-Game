@@ -30,6 +30,9 @@
 }
 .unclicked {
     background-color: $light-shade;
+    .game__square__text {
+        display: none;
+    }
 }
 .bomb {
     background-color: red;

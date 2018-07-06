@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 export const Square = props => {
     return (
-        <div    className={'game__square ' + props.type +' '+ props.state} 
-                onClick={() => props.clickCallback(props.coord)}>    
-            {props.value}
+        <div className={'game__square ' + props.type +' '+ props.state} 
+            onClick={() => props.clickCallback(props.coord)}>    
+            <span className='game__square__text'>
+                {props.value}
+            </span>
         </div>
     );
 }
@@ -18,7 +20,7 @@ export const Board = props => {
                     {nested.map((element, yindex) =>
                         <Square 
                             key={[xindex, yindex]}
-                            value={element.value} 
+                            value={element.value === 0 ? ' ' : element.value} 
                             state={element.state}
                             type={element.type}
                             coord={[xindex, yindex]}
@@ -45,12 +47,54 @@ class Game extends Component {
         };
     }
 
-    handleClick = (coords) => {
+    handleClick = (coord) => {
         var board = this.state.squares;
-        board[coords[0]][coords[1]].state = 'clicked';
+        
+        board[coord[0]][coord[1]].state = 'clicked';
+
+        if(board[coord[0]][coord[1]].type === 'bomb'){
+            //if a bomb is clicked on then the game is over
+            console.log('game over');
+        }
+        else if(board[coord[0]][coord[1]].value === 0 ){
+            //if an empty square is clicked on then need to flood open the surrounding squares
+            board = this.revealSquares(coord, board);
+
+        }
+
+        //update the board
         this.setState({
             squares: board
         });
+    }
+
+    revealSquares = (coord, board) => {
+        //When an empty square is clicked on, reveal all adjacent blank squares until hitting numbers
+
+        //stack of squares to examine
+        var toExplore = [coord];
+        var currentSquare, next;
+
+        while (toExplore.length > 0) {
+            //look at next square in the stack and the surrounding squares
+            currentSquare = toExplore.shift();
+            next = this.getSurroundingSquares(currentSquare);
+            
+            for(var i=next.xmin; i <= next.xmax; i++ ){
+                for(var j=next.ymin; j <= next.ymax; j++){
+                    //If the square being looked at isn't adjacent to a bomb then look at the surrounding squares
+                    if(board[i][j].state !== 'clicked' & board[i][j].value === 0 ){
+                        board[i][j].state = 'clicked';
+                        toExplore.push([i,j]);
+                    }
+                    //if it's a number, reveal it but don't look at surrounding squares
+                    else if (board[i][j].state !== 'clicked' & board[i][j].value > 0){
+                        board[i][j].state = 'clicked';
+                    }
+                }
+            }
+        }
+        return board;
     }
 
     componentWillMount = () => {
@@ -78,6 +122,7 @@ class Game extends Component {
             }
             else {
                 //if it has then don't re-do it
+
             }
             
         }
@@ -87,9 +132,8 @@ class Game extends Component {
         });
     }
 
-    setSurroundingNumbers = (board, currentSquare) => { 
-        //and adds a count of one to each of the surrounding squares
 
+    getSurroundingSquares = (currentSquare) => {
         //get range of the surrounding square coordinates
         let xmin = currentSquare[0]-1 < 0 ? 0 : currentSquare[0]-1;
         let ymin = currentSquare[1]-1 < 0 ? 0 : currentSquare[1]-1;
@@ -97,8 +141,16 @@ class Game extends Component {
         let xmax = currentSquare[0]+1 >= this.state.boardDimensions ? this.state.boardDimensions-1 : currentSquare[0]+1;
         let ymax = currentSquare[1]+1 >= this.state.boardDimensions ? this.state.boardDimensions-1 : currentSquare[1]+1;
 
-        for(var i=xmin; i <= xmax; i++ ){
-            for(var j=ymin; j <= ymax; j++){
+        return {xmin: xmin, xmax: xmax, ymin:ymin, ymax:ymax};
+    }
+
+    setSurroundingNumbers = (board, currentSquare) => { 
+        //and adds a count of one to each of the surrounding squares
+
+        let coord = this.getSurroundingSquares(currentSquare);
+
+        for(var i=coord.xmin; i <= coord.xmax; i++ ){
+            for(var j=coord.ymin; j <= coord.ymax; j++){
                 //If the square being looked at isn't a bomb add 1 to it's number.
                 if(board[i][j].type === 'safe') {
                     board[i][j].value += 1;

@@ -106,6 +106,8 @@ class modifiers: name-name--modifier
 
 .unclicked {
   background-color: #F7F9FA; }
+  .unclicked .game__square__text {
+    display: none; }
 
 .bomb {
   background-color: red; }
