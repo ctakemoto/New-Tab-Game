@@ -24,7 +24,7 @@ class App extends Component {
         minute: '2-digit'
       },
       locale: 'en-US',
-      boardDimensions: 8
+      boardDimensions: 12
     }
 
 }

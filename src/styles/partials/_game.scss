@@ -2,38 +2,48 @@
     border: $dark-shade solid 2px;
     border-radius: 5px;
     grid-row: 4 / span 5;
-    grid-column: 2 / span 1;
+    grid-column: auto-fill;
     padding: 10px;
 }
 
 .game__board {
     display: grid;
-    grid-template-columns: repeat(8, minmax(50px, 12.5%));
+    grid-template-columns: repeat(auto-fill, 25px);
     justify-items: stretch;
 }
 
 .game__board__col{
     display: grid;
-    grid-template-rows: repeat(8, minmax(50px, 12.5%));
+    grid-template-rows: repeat(auto-fill, 25px);
     justify-items: stretch;
 }
 
 .game__square {
     text-align: center;
-    min-width: 50px;
-    min-height: 50px;
+    min-width: 25px;
+    min-height: 25px;
     border: $dark-shade solid 1px;
 }
 
-.clicked {
-    background-color: $light-accent;
-}
-.unclicked {
+.safe-unclicked, .bomb-unclicked {
     background-color: $light-shade;
     .game__square__text {
         display: none;
     }
 }
-.bomb {
+
+.safe-clicked {
+    background-color: $light-accent;
+}
+
+.bomb-clicked, .bomb-end {
     background-color: red;
+}
+
+.bomb-flagged, .safe-flagged {
+    border: $dark-accent solid 1px;
+    background-color: $main-color;
+    .game__square__text {
+        display: none;
+    }
 }

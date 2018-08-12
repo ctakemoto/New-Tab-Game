@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 
+/*
+Game Square
+    Value: #, x
+    State: unclicked, clicked, flagged
+    Type: safe, bomb
+*/
+
 export const Square = props => {
     return (
-        <div className={'game__square ' + props.type +' '+ props.state} 
-            onClick={() => props.clickCallback(props.coord)}>    
+        <div className={props.gameFinished === 1 && props.type === 'bomb' ? 
+                'game__square ' + props.type + '-end'
+                : 'game__square ' + props.type +'-'+ props.state
+                } 
+            onClick={() => props.clickCallback(props.coord)}
+            onContextMenu={(e) => props.doubleCallback(e, props.coord)}>    
             <span className='game__square__text'>
                 {props.value}
             </span>
@@ -15,7 +26,7 @@ export const Board = props => {
 
     return(
         <div className='game__board'>
-            {props.squares.map((nested, xindex )=>
+            {props.squares.map((nested, xindex)=>
                 <div className='game__board__col' key={xindex}>
                     {nested.map((element, yindex) =>
                         <Square 
@@ -25,6 +36,8 @@ export const Board = props => {
                             type={element.type}
                             coord={[xindex, yindex]}
                             clickCallback={props.clickCallback}
+                            doubleCallback={props.doubleCallback}
+                            gameFinished={props.gameFinished}
                     />
                     )}
                 </div>
@@ -34,6 +47,16 @@ export const Board = props => {
 
 }
 
+export const InfoPanel = props => {
+    return(
+        <div className="game__info">
+            <button onClick={() => props.newGame()}>
+                New Game
+            </button>
+        </div>
+    );
+}
+
 class Game extends Component {
 
     constructor(props) {
@@ -41,31 +64,51 @@ class Game extends Component {
         this.state = {
           score: 0,
           squares: null,
-          moves: 0,
           boardDimensions: props.boardDimensions,
-          numSquares: Math.pow(props.boardDimensions,2)
+          numSquares: Math.pow(props.boardDimensions,2),
+          gameFinished: 0
         };
     }
 
-    handleClick = (coord) => {
-        var board = this.state.squares;
+
+    handleDoubleClick = (e, coord) => {
+        e.preventDefault();
+        //only if the game is active
+        if(this.state.gameFinished === 0){
+            var board = this.state.squares;
+            //toggle the flag if double clicked
+            board[coord[0]][coord[1]].state === 'flagged' ? board[coord[0]][coord[1]].state = 'unclicked': board[coord[0]][coord[1]].state = 'flagged';
+             //update the board
+             this.setState({
+                squares: board
+            });
+        }
         
-        board[coord[0]][coord[1]].state = 'clicked';
+    }
 
-        if(board[coord[0]][coord[1]].type === 'bomb'){
-            //if a bomb is clicked on then the game is over
-            console.log('game over');
+    handleClick = (coord) => {
+        //only if the game is active
+        if(this.state.gameFinished === 0){
+            var board = this.state.squares;
+        
+            board[coord[0]][coord[1]].state = 'clicked';
+    
+            if(board[coord[0]][coord[1]].type === 'bomb'){
+                //if a bomb is clicked on then the game is over
+                console.log('game over');
+                this.endGame();
+            }
+            else if(board[coord[0]][coord[1]].value === 0 ){
+                //if an empty square is clicked on then need to flood open the surrounding squares
+                board = this.revealSquares(coord, board);
+    
+            }
+    
+            //update the board
+            this.setState({
+                squares: board
+            });
         }
-        else if(board[coord[0]][coord[1]].value === 0 ){
-            //if an empty square is clicked on then need to flood open the surrounding squares
-            board = this.revealSquares(coord, board);
-
-        }
-
-        //update the board
-        this.setState({
-            squares: board
-        });
     }
 
     revealSquares = (coord, board) => {
@@ -83,18 +126,25 @@ class Game extends Component {
             for(var i=next.xmin; i <= next.xmax; i++ ){
                 for(var j=next.ymin; j <= next.ymax; j++){
                     //If the square being looked at isn't adjacent to a bomb then look at the surrounding squares
-                    if(board[i][j].state !== 'clicked' & board[i][j].value === 0 ){
+                    if(board[i][j].state === 'unclicked' & board[i][j].value === 0 ){
                         board[i][j].state = 'clicked';
                         toExplore.push([i,j]);
                     }
                     //if it's a number, reveal it but don't look at surrounding squares
-                    else if (board[i][j].state !== 'clicked' & board[i][j].value > 0){
+                    else if (board[i][j].state === 'unclicked' & board[i][j].value > 0){
                         board[i][j].state = 'clicked';
                     }
                 }
             }
         }
         return board;
+    }
+
+    endGame = () => {
+        //called when a bomb has been clicked on
+        this.setState({
+            gameFinished: 1
+        });
     }
 
     componentWillMount = () => {
@@ -105,8 +155,8 @@ class Game extends Component {
         //each row is it's own array
         var board = new Array(this.state.boardDimensions).fill(0).map(x => Array(this.state.boardDimensions).fill().map(x => ({value:0, state:'unclicked', type:'safe'})));
 
-        //chose a random number of bombs between a fourth and a third the number of squares
-        const numBombs = this.randInt(this.state.numSquares/4,this.state.numSquares/3)
+        //chose a random number of bombs between a fifth and a fourth the number of squares
+        const numBombs = this.randInt(this.state.numSquares/5,this.state.numSquares/4)
 
         var currentSquare;
 
@@ -120,18 +170,15 @@ class Game extends Component {
                 board[currentSquare[0]][currentSquare[1]].type = 'bomb';
                 board = this.setSurroundingNumbers(board, currentSquare);
             }
-            else {
-                //if it has then don't re-do it
-
-            }
             
         }
 
         this.setState({
-            squares: board 
+            squares: board,
+            gameFinished: 0,
+            score: 0
         });
     }
-
 
     getSurroundingSquares = (currentSquare) => {
         //get range of the surrounding square coordinates
@@ -177,7 +224,11 @@ class Game extends Component {
     render(){
         return (
             <div className='game'>
-                <Board squares={this.state.squares} clickCallback={this.handleClick}/>
+                <Board {...this.state}
+                    clickCallback={this.handleClick} 
+                    doubleCallback={this.handleDoubleClick}
+                    />
+                <InfoPanel {...this.state} newGame={this.initGame}/>
             </div>
         );
     }
