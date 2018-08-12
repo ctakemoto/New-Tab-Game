@@ -1,61 +1,6 @@
 import React, { Component } from 'react';
-
-/*
-Game Square
-    Value: #, x
-    State: unclicked, clicked, flagged
-    Type: safe, bomb
-*/
-
-export const Square = props => {
-    return (
-        <div className={props.gameFinished === 1 && props.type === 'bomb' ? 
-                'game__square ' + props.type + '-end'
-                : 'game__square ' + props.type +'-'+ props.state
-                } 
-            onClick={() => props.clickCallback(props.coord)}
-            onContextMenu={(e) => props.doubleCallback(e, props.coord)}>    
-            <span className='game__square__text'>
-                {props.value}
-            </span>
-        </div>
-    );
-}
-
-export const Board = props => {
-
-    return(
-        <div className='game__board'>
-            {props.squares.map((nested, xindex)=>
-                <div className='game__board__col' key={xindex}>
-                    {nested.map((element, yindex) =>
-                        <Square 
-                            key={[xindex, yindex]}
-                            value={element.value === 0 ? ' ' : element.value} 
-                            state={element.state}
-                            type={element.type}
-                            coord={[xindex, yindex]}
-                            clickCallback={props.clickCallback}
-                            doubleCallback={props.doubleCallback}
-                            gameFinished={props.gameFinished}
-                    />
-                    )}
-                </div>
-            )}
-        </div>
-    );
-
-}
-
-export const InfoPanel = props => {
-    return(
-        <div className="game__info">
-            <button onClick={() => props.newGame()}>
-                New Game
-            </button>
-        </div>
-    );
-}
+import Board from './Board.js';
+import InfoPanel from './InfoPanel.js';
 
 class Game extends Component {
 
@@ -70,7 +15,7 @@ class Game extends Component {
         };
     }
 
-
+    //Toggle the flagged state of any squar that's been clicked on.
     handleDoubleClick = (e, coord) => {
         e.preventDefault();
         //only if the game is active
@@ -151,6 +96,8 @@ class Game extends Component {
         this.initGame();
     }
 
+    //Initialize the Game
+    //  Create board and populate randomly with bombs
     initGame = () => {
         //each row is it's own array
         var board = new Array(this.state.boardDimensions).fill(0).map(x => Array(this.state.boardDimensions).fill().map(x => ({value:0, state:'unclicked', type:'safe'})));
