@@ -12,16 +12,6 @@ html {
   box-sizing: inherit; }
 
 /* Colors */
-.clock {
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
-  justify-self: start; }
-
-.date {
-  grid-row: 1 / span 1;
-  grid-column: 3 / span 1;
-  justify-self: end; }
-
 /*
 Naming
 class: name-name
@@ -29,9 +19,6 @@ element of class: name-name__element
 class modifiers: name-name--modifier
 */
 .app {
-  display: grid;
-  grid-template: 75px repeat(12, 1fp)/min-content(150px) auto min-content(150px);
-  grid-row-gap: 20px;
   font-family: "Baloo Chettan", cursive;
   margin: 0;
   padding: 0; }
@@ -39,22 +26,13 @@ class modifiers: name-name--modifier
 .header {
   font-size: 28px; }
 
-.greeting {
-  grid-row: 3 / span 1;
-  grid-column: 2 / span 1;
-  font-size: 50px;
-  justify-self: center; }
-
 .searchbar {
   padding: 15px;
   box-shadow: 5px 5px 10px grey;
   border-radius: 5px;
   font-size: 18px;
   width: 80%;
-  min-width: 600px;
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  justify-self: center; }
+  min-width: 600px; }
   .searchbar .searchbar__searchbox {
     border-radius: 5px 0 0 5px;
     border: 1px solid;
@@ -79,23 +57,11 @@ class modifiers: name-name--modifier
     width: 50px; }
 
 .game {
-  border: solid 2px;
-  border-radius: 10px;
-  grid-row: 4 / span 5;
-  grid-column: auto-fill;
   padding: 10px; }
 
 .game__board {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 25px);
-  justify-items: stretch;
-  border: #60487F solid 2px;
+  border: solid 2px;
   border-radius: 5px; }
-
-.game__board__col {
-  display: grid;
-  grid-template-rows: repeat(auto-fill, 25px);
-  justify-items: stretch; }
 
 .game__square {
   text-align: center;
@@ -106,10 +72,8 @@ class modifiers: name-name--modifier
 .safe-unclicked .game__square__text, .bomb-unclicked .game__square__text {
   display: none; }
 
-.bomb-flagged, .safe-flagged {
-  background-color: #DF466F; }
-  .bomb-flagged .game__square__text, .safe-flagged .game__square__text {
-    display: none; }
+.bomb-flagged .game__square__text, .safe-flagged .game__square__text {
+  display: none; }
 
 game__info button-display {
   display: block; }
@@ -118,31 +82,84 @@ game__info button-hide {
   display: none; }
 
 body {
-  background: #D9F6FA; }
+  background: #F3F5EF; }
 
 .app {
-  color: #D9F6FA; }
+  color: #DF466F; }
 
 .game {
-  background: #D9F6FA;
-  border-color: #60487F; }
+  background: #D59798;
+  border: none; }
+
+.game__board {
+  border-color: #262A41; }
 
 .game__square {
-  border-color: #60487F; }
+  border-color: #262A41;
+  color: #262A41; }
 
 .safe-unclicked, .bomb-unclicked {
-  background-color: #D9F6FA; }
+  background-color: #F3F5EF; }
 
 .safe-clicked {
-  background-color: #F373E0; }
+  background-color: #D59798; }
 
 .bomb-clicked, .bomb-end {
   background-color: red; }
 
+.bomb-flagged, .safe-flagged {
+  background-color: #CF668F; }
+
+.game__info {
+  background-color: #262A41; }
+
 .searchbar {
-  background-color: #D9F6FA; }
+  background-color: #F3F5EF; }
   .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
     border-color: grey; }
 
 .game__info {
-  font-family: 'Press Start 2P', cursive; }
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 5px; }
+
+.app {
+  display: grid;
+  grid-template: 75px repeat(12, 1fp)/min-content(150px) auto min-content(150px);
+  grid-row-gap: 20px; }
+
+.greeting {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  font-size: 50px;
+  justify-self: center; }
+
+.clock {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  justify-self: start; }
+
+.date {
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
+  justify-self: end; }
+
+.searchbar {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+  justify-self: center; }
+
+.game {
+  border: solid 2px;
+  border-radius: 10px;
+  grid-row: 4 / span 5;
+  grid-column: auto-fill; }
+
+.game__board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 25px);
+  justify-items: stretch; }
+
+.game__board__col {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 25px);
+  justify-items: stretch; }

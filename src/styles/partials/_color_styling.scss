@@ -4,16 +4,20 @@ body {
 }
 
 .app {
-    color: $light-shade;
+    color: $main-color;
 }
 
 .game {
-    background: $light-shade;
-    border-color: $dark-shade;
+    background: $light-accent;
+    border: none;
 }
 
+.game__board {
+    border-color: $dark-shade;
+}
 .game__square {
     border-color: $dark-shade;
+    color: $dark-shade;
 }
 
 .safe-unclicked, .bomb-unclicked {
@@ -26,6 +30,15 @@ body {
 
 .bomb-clicked, .bomb-end {
     background-color: red;
+}
+
+.bomb-flagged, .safe-flagged {
+
+    background-color: $dark-accent;
+}
+
+.game__info {
+    background-color: $dark-shade;
 }
 
 .searchbar {

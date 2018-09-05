@@ -1,23 +1,10 @@
 .game {
-    border: solid 2px;
-    border-radius: 10px;
-    grid-row: 4 / span 5;
-    grid-column: auto-fill;
     padding: 10px;
 }
 
 .game__board {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 25px);
-    justify-items: stretch;
-    border: $dark-shade solid 2px;
+    border: solid 2px;
     border-radius: 5px;
-}
-
-.game__board__col{
-    display: grid;
-    grid-template-rows: repeat(auto-fill, 25px);
-    justify-items: stretch;
 }
 
 .game__square {
@@ -37,7 +24,6 @@
 
 .bomb-flagged, .safe-flagged {
 
-    background-color: $dark-accent;
     .game__square__text {
         display: none;
     }
