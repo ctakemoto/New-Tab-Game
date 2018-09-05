@@ -1,6 +1,6 @@
 .game {
-    border: $dark-shade solid 2px;
-    border-radius: 5px;
+    border: solid 2px;
+    border-radius: 10px;
     grid-row: 4 / span 5;
     grid-column: auto-fill;
     padding: 10px;
@@ -10,6 +10,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 25px);
     justify-items: stretch;
+    border: $dark-shade solid 2px;
+    border-radius: 5px;
 }
 
 .game__board__col{
@@ -22,28 +24,30 @@
     text-align: center;
     min-width: 25px;
     min-height: 25px;
-    border: $dark-shade solid 1px;
+    border: solid 1px;
 }
 
 .safe-unclicked, .bomb-unclicked {
-    background-color: $light-shade;
+    
     .game__square__text {
         display: none;
     }
 }
 
-.safe-clicked {
-    background-color: $light-accent;
-}
-
-.bomb-clicked, .bomb-end {
-    background-color: red;
-}
 
 .bomb-flagged, .safe-flagged {
-    border: $dark-accent solid 1px;
-    background-color: $main-color;
+
+    background-color: $dark-accent;
     .game__square__text {
+        display: none;
+    }
+}
+
+game__info {
+    button-display {
+        display: block;
+    }
+    button-hide {
         display: none;
     }
 }

@@ -1,0 +1,38 @@
+
+body {
+    background: $light-shade;
+}
+
+.app {
+    color: $light-shade;
+}
+
+.game {
+    background: $light-shade;
+    border-color: $dark-shade;
+}
+
+.game__square {
+    border-color: $dark-shade;
+}
+
+.safe-unclicked, .bomb-unclicked {
+    background-color: $light-shade;
+}
+
+.safe-clicked {
+    background-color: $light-accent;
+}
+
+.bomb-clicked, .bomb-end {
+    background-color: red;
+}
+
+.searchbar {
+    background-color: $light-shade;
+    .searchbar__button, .searchbar__searchbox {
+        border-color: grey;
+    }
+
+}
+

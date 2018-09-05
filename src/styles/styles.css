@@ -32,8 +32,9 @@ class modifiers: name-name--modifier
   display: grid;
   grid-template: 75px repeat(12, 1fp)/min-content(150px) auto min-content(150px);
   grid-row-gap: 20px;
-  font-family: "Nanum Gothic", sans-serif;
-  margin: 0; }
+  font-family: "Baloo Chettan", cursive;
+  margin: 0;
+  padding: 0; }
 
 .header {
   font-size: 28px; }
@@ -51,13 +52,12 @@ class modifiers: name-name--modifier
   font-size: 18px;
   width: 80%;
   min-width: 600px;
-  background-color: #F7F9FA;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
   justify-self: center; }
   .searchbar .searchbar__searchbox {
     border-radius: 5px 0 0 5px;
-    border: 1px solid grey;
+    border: 1px solid;
     border-right: none;
     padding: 5px;
     margin: 0;
@@ -68,7 +68,7 @@ class modifiers: name-name--modifier
     width: calc(100% - 50px); }
   .searchbar .searchbar__button {
     border-radius: 0 5px 5px 0;
-    border: 1px solid grey;
+    border: 1px solid;
     border-left: none;
     padding: 5px;
     margin: 0;
@@ -79,8 +79,8 @@ class modifiers: name-name--modifier
     width: 50px; }
 
 .game {
-  border: #303954 solid 2px;
-  border-radius: 5px;
+  border: solid 2px;
+  border-radius: 10px;
   grid-row: 4 / span 5;
   grid-column: auto-fill;
   padding: 10px; }
@@ -88,7 +88,9 @@ class modifiers: name-name--modifier
 .game__board {
   display: grid;
   grid-template-columns: repeat(auto-fill, 25px);
-  justify-items: stretch; }
+  justify-items: stretch;
+  border: #60487F solid 2px;
+  border-radius: 5px; }
 
 .game__board__col {
   display: grid;
@@ -99,21 +101,48 @@ class modifiers: name-name--modifier
   text-align: center;
   min-width: 25px;
   min-height: 25px;
-  border: #303954 solid 1px; }
+  border: solid 1px; }
 
-.safe-unclicked, .bomb-unclicked {
-  background-color: #F7F9FA; }
-  .safe-unclicked .game__square__text, .bomb-unclicked .game__square__text {
+.safe-unclicked .game__square__text, .bomb-unclicked .game__square__text {
+  display: none; }
+
+.bomb-flagged, .safe-flagged {
+  background-color: #DF466F; }
+  .bomb-flagged .game__square__text, .safe-flagged .game__square__text {
     display: none; }
 
+game__info button-display {
+  display: block; }
+
+game__info button-hide {
+  display: none; }
+
+body {
+  background: #D9F6FA; }
+
+.app {
+  color: #D9F6FA; }
+
+.game {
+  background: #D9F6FA;
+  border-color: #60487F; }
+
+.game__square {
+  border-color: #60487F; }
+
+.safe-unclicked, .bomb-unclicked {
+  background-color: #D9F6FA; }
+
 .safe-clicked {
-  background-color: #C6ACAC; }
+  background-color: #F373E0; }
 
 .bomb-clicked, .bomb-end {
   background-color: red; }
 
-.bomb-flagged, .safe-flagged {
-  border: #E85252 solid 1px;
-  background-color: #F19B5F; }
-  .bomb-flagged .game__square__text, .safe-flagged .game__square__text {
-    display: none; }
+.searchbar {
+  background-color: #D9F6FA; }
+  .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
+    border-color: grey; }
+
+.game__info {
+  font-family: 'Press Start 2P', cursive; }

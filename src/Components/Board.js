@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Square from './Square.js';
 
 export const Board = props => {

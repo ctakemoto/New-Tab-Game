@@ -11,11 +11,13 @@ class Game extends Component {
           squares: null,
           boardDimensions: props.boardDimensions,
           numSquares: Math.pow(props.boardDimensions,2),
-          gameFinished: 0
+          gameFinished: 0,
+          start: 0,
+          time: 0
         };
     }
 
-    //Toggle the flagged state of any squar that's been clicked on.
+    //Toggle the flagged state of any square that's been clicked on.
     handleDoubleClick = (e, coord) => {
         e.preventDefault();
         //only if the game is active
@@ -32,18 +34,22 @@ class Game extends Component {
     }
 
     handleClick = (coord) => {
-        //only if the game is active
-        if(this.state.gameFinished === 0){
-            var board = this.state.squares;
-        
+
+        var board = this.state.squares;
+
+        //only if the game is active and square hasn't been flagged
+        if(this.state.gameFinished === 0 && board[coord[0]][coord[1]].state !== 'flagged'){
+
+
             board[coord[0]][coord[1]].state = 'clicked';
-    
+
             if(board[coord[0]][coord[1]].type === 'bomb'){
                 //if a bomb is clicked on then the game is over
                 console.log('game over');
                 this.endGame();
             }
-            else if(board[coord[0]][coord[1]].value === 0 ){
+            else if(board[coord[0]][coord[1]].value === 0){
+                
                 //if an empty square is clicked on then need to flood open the surrounding squares
                 board = this.revealSquares(coord, board);
     
@@ -88,7 +94,9 @@ class Game extends Component {
     endGame = () => {
         //called when a bomb has been clicked on
         this.setState({
-            gameFinished: 1
+            gameFinished: 1,
+            time: (Date.now() - this.state.start)/1000,
+            start: 0
         });
     }
 
@@ -123,7 +131,8 @@ class Game extends Component {
         this.setState({
             squares: board,
             gameFinished: 0,
-            score: 0
+            score: 0,
+            start: Date.now()
         });
     }
 
