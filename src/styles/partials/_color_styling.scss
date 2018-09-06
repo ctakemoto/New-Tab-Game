@@ -8,12 +8,12 @@ body {
 }
 
 .game {
-    background: $light-accent;
-    border: none;
+    background: $dark-shade;
+    border-color: $dark-shade;
 }
 
 .game__board {
-    border-color: $dark-shade;
+    background: $light-shade;
 }
 .game__square {
     border-color: $dark-shade;
@@ -38,11 +38,12 @@ body {
 }
 
 .game__info {
-    background-color: $dark-shade;
+    background-color: $dark-accent;
+    color: $light-shade;
 }
 
 .searchbar {
-    background-color: $light-shade;
+    background-color: $light-accent;
     .searchbar__button, .searchbar__searchbox {
         border-color: grey;
     }

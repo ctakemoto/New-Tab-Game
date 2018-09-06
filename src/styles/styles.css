@@ -57,11 +57,16 @@ class modifiers: name-name--modifier
     width: 50px; }
 
 .game {
-  padding: 10px; }
+  margin: 30px 0 0 0;
+  padding: 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey; }
 
-.game__board {
-  border: solid 2px;
-  border-radius: 5px; }
+.game_board {
+  padding: 5px;
+  margin: 0; }
 
 .game__square {
   text-align: center;
@@ -88,11 +93,11 @@ body {
   color: #DF466F; }
 
 .game {
-  background: #D59798;
-  border: none; }
+  background: #262A41;
+  border-color: #262A41; }
 
 .game__board {
-  border-color: #262A41; }
+  background: #F3F5EF; }
 
 .game__square {
   border-color: #262A41;
@@ -111,55 +116,53 @@ body {
   background-color: #CF668F; }
 
 .game__info {
-  background-color: #262A41; }
+  background-color: #CF668F;
+  color: #F3F5EF; }
 
 .searchbar {
-  background-color: #F3F5EF; }
+  background-color: #D59798; }
   .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
     border-color: grey; }
 
 .game__info {
-  font-family: 'Press Start 2P', cursive;
-  border-radius: 5px; }
+  /*font-family: 'Press Start 2P', cursive;*/
+  border-radius: 5px;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+  padding: 50px; }
 
 .app {
   display: grid;
   grid-template: 75px repeat(12, 1fp)/min-content(150px) auto min-content(150px);
   grid-row-gap: 20px; }
-
-.greeting {
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  font-size: 50px;
-  justify-self: center; }
-
-.clock {
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
-  justify-self: start; }
-
-.date {
-  grid-row: 1 / span 1;
-  grid-column: 3 / span 1;
-  justify-self: end; }
-
-.searchbar {
-  grid-row: 3 / span 1;
-  grid-column: 2 / span 1;
-  justify-self: center; }
-
-.game {
-  border: solid 2px;
-  border-radius: 10px;
-  grid-row: 4 / span 5;
-  grid-column: auto-fill; }
-
-.game__board {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 25px);
-  justify-items: stretch; }
-
-.game__board__col {
-  display: grid;
-  grid-template-rows: repeat(auto-fill, 25px);
-  justify-items: stretch; }
+  .app .date {
+    grid-row: 1 / span 1;
+    grid-column: 3 / span 1;
+    justify-self: end; }
+  .app .clock {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    justify-self: start; }
+  .app .searchbar {
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 1;
+    justify-self: center; }
+  .app .greeting {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    font-size: 50px;
+    justify-self: center; }
+  .app .game {
+    grid-row: 4 / span 5;
+    grid-column: auto-fit;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); }
+    .app .game .game__board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 25px);
+      justify-items: stretch; }
+      .app .game .game__board .game__board__col {
+        display: grid;
+        grid-template-rows: repeat(auto-fill, 25px);
+        justify-items: stretch; }
