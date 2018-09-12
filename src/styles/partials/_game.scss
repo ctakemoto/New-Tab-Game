@@ -31,11 +31,34 @@
     }
 }
 
+
 .game__info {
+    /*font-family: 'Press Start 2P', cursive;*/
+    border-radius: 5px;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    padding: 50px;
+    margin: 15px;
+    white-space: pre-wrap; //makes \n work in strings
+
     button-display {
         display: block;
     }
     button-hide {
         display: none;
     }
+
+    .game__info__time {
+        margin: 10px;
+    }
+    .game__info__score {
+        margin: 10px;
+        text-align: left;
+
+        .game__info__score__points {
+            float: right;
+        }
+    }
+
 }

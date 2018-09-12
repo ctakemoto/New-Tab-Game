@@ -1,13 +1,13 @@
 .app {
     display: grid;
-    grid-template: 75px repeat(12, 1fp) / min-content(150px) auto min-content(150px);
+    grid-template: 75px repeat(12, 1fp) / min(150px) repeat(3, auto) min-content(150px);
     grid-row-gap: 20px;
 
 
     .date {
         grid-row: 1 / span 1;
-        grid-column: 3 / span 1;
-        justify-self: end;
+        grid-column: 2 / span 1;
+        justify-self: center;
     }
 
     .clock {
@@ -31,7 +31,7 @@
 
     .game {
         grid-row: 4 / span 5;
-        grid-column: auto-fit;
+        grid-column: min-content;
 
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -51,9 +51,7 @@
 
         }
 
-        .game__info {
-
-        }
+     
 
     }
 }
