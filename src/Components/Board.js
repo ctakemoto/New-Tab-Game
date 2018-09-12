@@ -10,7 +10,7 @@ export const Board = props => {
                     {nested.map((element, yindex) =>
                         <Square 
                             key={[xindex, yindex]}
-                            value={element.value === 0 ? ' ' : element.value} 
+                            value={element.value} 
                             state={element.state}
                             type={element.type}
                             coord={[xindex, yindex]}

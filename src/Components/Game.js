@@ -43,7 +43,7 @@ class Game extends Component {
 
             board[coord[0]][coord[1]].state = 'clicked';
 
-            if(board[coord[0]][coord[1]].type === 'bomb'){
+            if(board[coord[0]][coord[1]].type === 'poop'){
                 //if a bomb is clicked on then the game is over
                 console.log('game over');
                 this.endGame();
@@ -122,7 +122,7 @@ class Game extends Component {
             //check to see if the square has already been set as a bomb before
             if (board[currentSquare[0]][currentSquare[1]].type === 'safe'){
                 board[currentSquare[0]][currentSquare[1]].value = 'x';
-                board[currentSquare[0]][currentSquare[1]].type = 'bomb';
+                board[currentSquare[0]][currentSquare[1]].type = 'poop';
                 board = this.setSurroundingNumbers(board, currentSquare);
             }
             
@@ -148,7 +148,7 @@ class Game extends Component {
     }
 
     setSurroundingNumbers = (board, currentSquare) => { 
-        //and adds a count of one to each of the surrounding squares
+        //adds a count of one to each of the surrounding squares to the current square
 
         let coord = this.getSurroundingSquares(currentSquare);
 
@@ -171,6 +171,7 @@ class Game extends Component {
     }
 
     randSquare = () => {
+        //picks a random coordinate pair which specifies a certain square
         var pos = new Array(2);
         pos[0] = this.randInt(0, this.state.boardDimensions);
         pos[1] = this.randInt(0, this.state.boardDimensions);

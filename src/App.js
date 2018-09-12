@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Greeting from './Components/Greeting.js';
 import { SearchBar } from './Components/SearchBar.js';
 import Game from './Components/Game.js';
-import { Clock, TodaysDate } from './Components/TimeDate.js';
+import { TodaysDate } from './Components/TimeDate.js';
 
 
 
@@ -33,7 +33,6 @@ class App extends Component {
       <div className='app'>
 
         <TodaysDate {...this.state} {...this.settings}/>
-        <Clock {...this.state} {...this.settings}/>
         <SearchBar {...this.state} {...this.settings}/>
         <Greeting {...this.state} {...this.settings}/>
         <Game {...this.state} {...this.settings}/>

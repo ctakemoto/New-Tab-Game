@@ -20,7 +20,7 @@ body {
     color: $dark-shade;
 }
 
-.safe-unclicked, .bomb-unclicked {
+.safe-unclicked, .poop-unclicked {
     background-color: $light-shade;
 }
 
@@ -28,13 +28,13 @@ body {
     background-color: $light-accent;
 }
 
-.bomb-clicked, .bomb-end {
+.poop-clicked, .poop-end {
     background-color: red;
 }
 
-.bomb-flagged, .safe-flagged {
+.poop-flagged, .safe-flagged {
 
-    background-color: $dark-accent;
+    background-color: $light-shade;
 }
 
 .game__info {

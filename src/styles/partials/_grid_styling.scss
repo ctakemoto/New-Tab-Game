@@ -39,7 +39,7 @@
         .game__board {
             display: grid;
             grid-template-columns: repeat(auto-fill, 25px);
-            justify-items: stretch;
+            width: $game-square-dimensions * $board-dimensions;
         
             
         .game__board__col {

@@ -63,6 +63,8 @@ class modifiers: name-name--modifier
   border-width: 2px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px grey; }
+  .game .emoji {
+    font-size: 12px; }
 
 .game_board {
   padding: 5px;
@@ -74,16 +76,13 @@ class modifiers: name-name--modifier
   min-height: 25px;
   border: solid 1px; }
 
-.safe-unclicked .game__square__text, .bomb-unclicked .game__square__text {
+.safe-unclicked .game__square__text, .poop-unclicked .game__square__text {
   display: none; }
 
-.bomb-flagged .game__square__text, .safe-flagged .game__square__text {
-  display: none; }
-
-game__info button-display {
+.game__info button-display {
   display: block; }
 
-game__info button-hide {
+.game__info button-hide {
   display: none; }
 
 body {
@@ -103,24 +102,24 @@ body {
   border-color: #262A41;
   color: #262A41; }
 
-.safe-unclicked, .bomb-unclicked {
+.safe-unclicked, .poop-unclicked {
   background-color: #F3F5EF; }
 
 .safe-clicked {
-  background-color: #D59798; }
+  background-color: #797CA6; }
 
-.bomb-clicked, .bomb-end {
+.poop-clicked, .poop-end {
   background-color: red; }
 
-.bomb-flagged, .safe-flagged {
-  background-color: #CF668F; }
+.poop-flagged, .safe-flagged {
+  background-color: #F3F5EF; }
 
 .game__info {
   background-color: #CF668F;
   color: #F3F5EF; }
 
 .searchbar {
-  background-color: #D59798; }
+  background-color: #797CA6; }
   .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
     border-color: grey; }
 
@@ -130,7 +129,8 @@ body {
   text-align: center;
   justify-self: center;
   align-self: center;
-  padding: 50px; }
+  padding: 50px;
+  margin: 15px; }
 
 .app {
   display: grid;
@@ -161,7 +161,7 @@ body {
     .app .game .game__board {
       display: grid;
       grid-template-columns: repeat(auto-fill, 25px);
-      justify-items: stretch; }
+      width: 350px; }
       .app .game .game__board .game__board__col {
         display: grid;
         grid-template-rows: repeat(auto-fill, 25px);

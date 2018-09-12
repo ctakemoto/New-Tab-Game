@@ -5,6 +5,11 @@
     border-width: 2px;
     border-radius: 10px;
     box-shadow: 5px 5px 10px grey;
+
+    .emoji {
+        font-size: 12px;
+    }
+
 }
 
 .game_board {
@@ -14,27 +19,19 @@
 
 .game__square {
     text-align: center;
-    min-width: 25px;
-    min-height: 25px;
+    min-width: $game-square-dimensions;
+    min-height: $game-square-dimensions;
     border: solid 1px;
 }
 
-.safe-unclicked, .bomb-unclicked {
+.safe-unclicked, .poop-unclicked {
     
     .game__square__text {
         display: none;
     }
 }
 
-
-.bomb-flagged, .safe-flagged {
-
-    .game__square__text {
-        display: none;
-    }
-}
-
-game__info {
+.game__info {
     button-display {
         display: block;
     }
