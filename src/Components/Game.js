@@ -7,18 +7,18 @@ class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          score: 0,
-          squares: null,
+          squares: null,                        //holds arrays representing the board
           boardDimensions: props.boardDimensions,
           numSquares: Math.pow(props.boardDimensions,2),
-          numBombs: 0,
-          numFlagged: 0,                //track correctly flagged bombs
-          gameFinished: 0,
-          start: 0,
-          time: 0,
-          scoreFlagBonus: 300,
-          scoreTimeBonus: 2000,
-          scoreWinBonus: 100
+          numBombs: 0,                          //number of bombs placed on the map
+          numFlagged: 0,                        //track # correctly flagged bombs
+          gameFinished: 0,                      //0 while game is ongoing, 1 when it's finished
+          start: 0,                             //store time at start of game
+          time: 0,                              //store duration of game once it's finished
+          scoreFlagBonus: 300,                  //total points awarded if the user finds all the flags
+          scoreTimeBonus: 2000,                 //awarded if the user wins, gets more points the quicker they finish
+          scoreWinBonus: 100,                   //flat bonus awarded for winning the game
+          score: 0                              //final total score at end of the game
         };
     }
 
