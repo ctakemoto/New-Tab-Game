@@ -12,6 +12,18 @@
 
 }
 
+button {
+    display: inline-block;
+    cursor: pointer;
+    width: 150px;
+    height: 25px;
+    padding: 5px;
+    margin: 5px 0;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+}
+
 .game_board {
     padding: 5px;
     margin: 0;

@@ -7,6 +7,11 @@ body {
     color: $main-color;
 }
 
+button {
+    color: white;
+    background-color: $alt-dark-shade;
+}
+
 .game {
     background: $dark-shade;
     border-color: $dark-shade;
@@ -29,7 +34,7 @@ body {
 }
 
 .poop-clicked, .poop-end {
-    background-color: red;
+    background-color: $main-color;
 }
 
 .poop-flagged, .safe-flagged {

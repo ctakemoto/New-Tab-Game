@@ -66,6 +66,17 @@ class modifiers: name-name--modifier
   .game .emoji {
     font-size: 12px; }
 
+button {
+  display: inline-block;
+  cursor: pointer;
+  width: 150px;
+  height: 25px;
+  padding: 5px;
+  margin: 5px 0;
+  text-align: center;
+  border-radius: 5px;
+  border: none; }
+
 .game_board {
   padding: 5px;
   margin: 0; }
@@ -106,6 +117,10 @@ body {
 .app {
   color: #DF466F; }
 
+button {
+  color: white;
+  background-color: #852b60; }
+
 .game {
   background: #262A41;
   border-color: #262A41; }
@@ -121,10 +136,10 @@ body {
   background-color: #F3F5EF; }
 
 .safe-clicked {
-  background-color: #797CA6; }
+  background-color: #59adb9; }
 
 .poop-clicked, .poop-end {
-  background-color: red; }
+  background-color: #DF466F; }
 
 .poop-flagged, .safe-flagged {
   background-color: #F3F5EF; }
@@ -134,7 +149,7 @@ body {
   color: #F3F5EF; }
 
 .searchbar {
-  background-color: #797CA6; }
+  background-color: #59adb9; }
   .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
     border-color: grey; }
 
