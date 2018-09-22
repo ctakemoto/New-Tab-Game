@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './Board.js';
 import InfoPanel from './InfoPanel.js';
+import Fade from 'react-reveal/Fade';
 
 class Game extends Component {
 
@@ -42,12 +43,12 @@ class Game extends Component {
             if(board[coord[0]][coord[1]].state === 'flagged'){
                 board[coord[0]][coord[1]].state = 'unclicked'
                 //if the square being unflagged is a bomb, decrease number flagged
-                board[coord[0]][coord[1]].type === 'poop' ? flagged-- : '';
+                flagged = board[coord[0]][coord[1]].type === 'poop' ? flagged-1 : flagged;
             }
             else {
                 board[coord[0]][coord[1]].state = 'flagged'
                 //if the ssquare being flagged is a bomb, increase number flagged
-                board[coord[0]][coord[1]].type === 'poop' ? flagged++ : '';
+                flagged = board[coord[0]][coord[1]].type === 'poop' ? flagged+1 : flagged;
             }
 
              //update the board
@@ -252,13 +253,15 @@ class Game extends Component {
 
     render(){
         return (
-            <div className='game'>
-                <Board {...this.state}
-                    clickCallback={this.handleClick} 
-                    doubleCallback={this.handleDoubleClick}
-                    />
-                <InfoPanel {...this.state} newGame={this.initGame}/>
-            </div>
+            <Fade>
+                <div className='game'>
+                    <Board {...this.state}
+                        clickCallback={this.handleClick} 
+                        doubleCallback={this.handleDoubleClick}
+                        />
+                    <InfoPanel {...this.state} newGame={this.initGame}/>
+                </div>
+            </Fade>
         );
     }
 }

@@ -141,28 +141,22 @@ body {
 
 .app {
   display: grid;
-  grid-template: 75px repeat(12, 1fp)/150px repeat(3, auto) min-content(150px);
-  grid-row-gap: 20px; }
+  grid-template-columns: 1fp auto 1fp;
+  grid-template-rows: 30px repeat(2, 75px) auto;
+  grid-template-areas: ". date ." ". greeting ." ". searchbar ." ". game .";
+  grid-row-gap: 10px; }
   .app .date {
-    grid-row: 1 / span 1;
-    grid-column: 2 / span 1;
-    justify-self: center; }
-  .app .clock {
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 1;
-    justify-self: start; }
-  .app .searchbar {
-    grid-row: 3 / span 1;
-    grid-column: 2 / span 1;
+    grid-area: date;
     justify-self: center; }
   .app .greeting {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
     font-size: 50px;
+    grid-area: greeting;
+    justify-self: center; }
+  .app .searchbar {
+    grid-area: searchbar;
     justify-self: center; }
   .app .game {
-    grid-row: 4 / span 5;
-    grid-column: min-content;
+    grid-area: game;
     display: grid;
     grid-template-columns: repeat(2, 1fr); }
     .app .game .game__board {
