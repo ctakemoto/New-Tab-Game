@@ -85,7 +85,6 @@ class modifiers: name-name--modifier
   justify-self: center;
   align-self: center;
   padding: 50px;
-  margin: 15px;
   white-space: pre-wrap;
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear; }
@@ -157,8 +156,10 @@ body {
     justify-self: center; }
   .app .game {
     grid-area: game;
+    justify-self: center;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); }
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 15px; }
     .app .game .game__board {
       display: grid;
       grid-template-columns: repeat(auto-fill, 25px);
@@ -167,3 +168,6 @@ body {
         display: grid;
         grid-template-rows: repeat(auto-fill, 25px);
         justify-items: stretch; }
+    .app .game .game__info {
+      justify-self: stretch;
+      height: 350px; }

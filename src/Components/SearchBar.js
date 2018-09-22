@@ -3,10 +3,10 @@ import Fade from 'react-reveal/Fade';
 //import PropTypes from 'prop-types';
 
 
-export const SearchBar = () => {
+export const SearchBar = props => {
 
     return (
-        <Fade>
+        <Fade bottom when={props.showSearchbar}>
             <form   action='http://www.google.com/search' 
                     method='get' 
                     className='searchbar'>

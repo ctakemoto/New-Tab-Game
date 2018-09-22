@@ -12,6 +12,8 @@ class App extends Component {
       time: new Date().getTime(),
       showGreeting: false,
       showDate: false,
+      showSearchbar: false,
+      showGame: false
     };
     this.settings = {
       dateFormat: {
@@ -31,12 +33,25 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //Set timing for when the different elements will fade in
     setTimeout(() => {
       this.setState({ 
         showGreeting: true, 
-        showDate: true 
+        showDate: true
       });
-    }, 1000);
+     }, 500);
+     /*********************/
+     setTimeout(() => {
+      this.setState({ 
+        showSearchbar: true
+      });
+     }, 1000);
+     /*********************/
+     setTimeout(() => {
+      this.setState({ 
+        showGame: true 
+      });
+     }, 1500);
     
   }
 

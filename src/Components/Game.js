@@ -253,7 +253,7 @@ class Game extends Component {
 
     render(){
         return (
-            <Fade>
+            <Fade bottom when={this.props.showGame}>
                 <div className='game'>
                     <Board {...this.state}
                         clickCallback={this.handleClick} 

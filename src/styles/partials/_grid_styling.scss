@@ -30,9 +30,11 @@
 
     .game {
         grid-area: game;
+        justify-self: center;
 
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 15px;
 
         .game__board {
             display: grid;
@@ -40,13 +42,18 @@
             width: $game-square-dimensions * $board-dimensions;
         
             
-        .game__board__col {
-            display: grid;
-            grid-template-rows: repeat(auto-fill, 25px);
-            justify-items: stretch;
+            .game__board__col {
+                display: grid;
+                grid-template-rows: repeat(auto-fill, 25px);
+                justify-items: stretch;
+            }
+
+
         }
 
-
+        .game__info {
+            justify-self: stretch;
+            height: $game-square-dimensions * $board-dimensions;
         }
 
      
