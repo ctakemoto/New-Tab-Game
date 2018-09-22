@@ -31,6 +31,8 @@ class Game extends Component {
 
         //only if the game is active
         if(this.state.gameFinished === 0){
+
+
             //get number of correctly flagged so far
             var flagged = this.state.numFlagged;
 
@@ -59,7 +61,11 @@ class Game extends Component {
 
     handleClick = (coord) => {
 
+
         var board = this.state.squares;
+        
+        //start time on the first click
+        var time = this.state.start === 0 ? Date.now() : this.state.start;
 
         //only if the game is active and square hasn't been flagged
         if(this.state.gameFinished === 0 && board[coord[0]][coord[1]].state !== 'flagged'){
@@ -78,9 +84,10 @@ class Game extends Component {
     
             }
 
-            //update the board
+            //update the state
             this.setState({
-                squares: board
+                squares: board,
+                start: time
             });
 
             //check to see if the user has won the game
@@ -197,7 +204,7 @@ class Game extends Component {
             numBombs: numBombs,
             numFlagged: 0,
             score: 0,
-            start: Date.now()
+            start: 0
         });
     }
 

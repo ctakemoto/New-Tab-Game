@@ -33,7 +33,7 @@
 
 
 .game__info {
-    /*font-family: 'Press Start 2P', cursive;*/
+    //font-family: 'Press Start 2P', cursive;
     border-radius: 5px;
     text-align: center;
     justify-self: center;
@@ -41,6 +41,9 @@
     padding: 50px;
     margin: 15px;
     white-space: pre-wrap; //makes \n work in strings
+
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
 
     button-display {
         display: block;

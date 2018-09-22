@@ -1,31 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactRevealText from 'react-reveal-text';
 
-export const Clock = props => {
+export const TodaysDate  = props => {
 
-    var currentTime = new Date(props.time);
+    const currentTime = new Date(props.time);
+
     return(
-        <div className="clock">
-            {currentTime.toLocaleTimeString(props.locale, props.timeFormat)}
-        </div>
-    );
-
-}
-
-export const TodaysDate = props => {
-
-    var currentTime = new Date(props.time);
-    return(
-        <div className="date">{currentTime.toLocaleDateString(props.locale, props.dateFormat)}</div>
+        <ReactRevealText 
+            show={props.showDate}
+            className="date"
+        >
+            {currentTime.toLocaleDateString(props.locale, props.dateFormat)}
+        </ReactRevealText>
     );
     
 }
+
 TodaysDate.propTypes = {
     locale: PropTypes.string,
-    dateFormat: PropTypes.object
+    dateFormat: PropTypes.object,
+    showDate: PropTypes.bool
 }
 
-Clock.propTypes = {
-    locale: PropTypes.string,
-    timeFormat: PropTypes.object
-}
+export default TodaysDate;

@@ -33,30 +33,28 @@ class modifiers: name-name--modifier
   font-size: 18px;
   width: 80%;
   min-width: 600px; }
-
-.searchbar .searchbar__searchbox {
-  border-radius: 5px 0 0 5px;
-  border: 1px solid;
-  border-right: none;
-  padding: 5px;
-  margin: 0;
-  grid-column: 1 span 1;
-  height: 40px;
-  overflow: hidden;
-  line-height: 18px;
-  width: calc(100% - 50px); }
-
-.searchbar .searchbar__button {
-  border-radius: 0 5px 5px 0;
-  border: 1px solid;
-  border-left: none;
-  padding: 5px;
-  margin: 0;
-  grid-column: 2 span 1;
-  height: 40px;
-  line-height: 18px;
-  vertical-align: top;
-  width: 50px; }
+  .searchbar .searchbar__searchbox {
+    border-radius: 5px 0 0 5px;
+    border: 1px solid;
+    border-right: none;
+    padding: 5px;
+    margin: 0;
+    grid-column: 1 span 1;
+    height: 40px;
+    overflow: hidden;
+    line-height: 18px;
+    width: calc(100% - 50px); }
+  .searchbar .searchbar__button {
+    border-radius: 0 5px 5px 0;
+    border: 1px solid;
+    border-left: none;
+    padding: 5px;
+    margin: 0;
+    grid-column: 2 span 1;
+    height: 40px;
+    line-height: 18px;
+    vertical-align: top;
+    width: 50px; }
 
 .game {
   margin: 30px 0 0 0;
@@ -65,9 +63,8 @@ class modifiers: name-name--modifier
   border-width: 2px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px grey; }
-
-.game .emoji {
-  font-size: 12px; }
+  .game .emoji {
+    font-size: 12px; }
 
 .game_board {
   padding: 5px;
@@ -83,30 +80,26 @@ class modifiers: name-name--modifier
   display: none; }
 
 .game__info {
-  /*font-family: 'Press Start 2P', cursive;*/
   border-radius: 5px;
   text-align: center;
   justify-self: center;
   align-self: center;
   padding: 50px;
   margin: 15px;
-  white-space: pre-wrap; }
-
-.game__info button-display {
-  display: block; }
-
-.game__info button-hide {
-  display: none; }
-
-.game__info .game__info__time {
-  margin: 10px; }
-
-.game__info .game__info__score {
-  margin: 10px;
-  text-align: left; }
-
-.game__info .game__info__score .game__info__score__points {
-  float: right; }
+  white-space: pre-wrap;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear; }
+  .game__info button-display {
+    display: block; }
+  .game__info button-hide {
+    display: none; }
+  .game__info .game__info__time {
+    margin: 10px; }
+  .game__info .game__info__score {
+    margin: 10px;
+    text-align: left; }
+    .game__info .game__info__score .game__info__score__points {
+      float: right; }
 
 body {
   background: #F3F5EF; }
@@ -143,48 +136,40 @@ body {
 
 .searchbar {
   background-color: #797CA6; }
-
-.searchbar .searchbar__button, .searchbar .searchbar__searchbox {
-  border-color: grey; }
+  .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
+    border-color: grey; }
 
 .app {
   display: grid;
   grid-template: 75px repeat(12, 1fp)/150px repeat(3, auto) min-content(150px);
   grid-row-gap: 20px; }
-
-.app .date {
-  grid-row: 1 / span 1;
-  grid-column: 2 / span 1;
-  justify-self: center; }
-
-.app .clock {
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
-  justify-self: start; }
-
-.app .searchbar {
-  grid-row: 3 / span 1;
-  grid-column: 2 / span 1;
-  justify-self: center; }
-
-.app .greeting {
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  font-size: 50px;
-  justify-self: center; }
-
-.app .game {
-  grid-row: 4 / span 5;
-  grid-column: min-content;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); }
-
-.app .game .game__board {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 25px);
-  width: 350px; }
-
-.app .game .game__board .game__board__col {
-  display: grid;
-  grid-template-rows: repeat(auto-fill, 25px);
-  justify-items: stretch; }
+  .app .date {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    justify-self: center; }
+  .app .clock {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    justify-self: start; }
+  .app .searchbar {
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 1;
+    justify-self: center; }
+  .app .greeting {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    font-size: 50px;
+    justify-self: center; }
+  .app .game {
+    grid-row: 4 / span 5;
+    grid-column: min-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); }
+    .app .game .game__board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 25px);
+      width: 350px; }
+      .app .game .game__board .game__board__col {
+        display: grid;
+        grid-template-rows: repeat(auto-fill, 25px);
+        justify-items: stretch; }

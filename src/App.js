@@ -11,6 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       time: new Date().getTime(),
+      showGreeting: false,
+      showDate: false,
     };
     this.settings = {
       dateFormat: {
@@ -27,7 +29,18 @@ class App extends Component {
       boardDimensions: 14
     }
 
-}
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ 
+        showGreeting: true, 
+        showDate: true 
+      });
+    }, 1000);
+    
+  }
+
   render() {
     return (
       <div className='app'>
