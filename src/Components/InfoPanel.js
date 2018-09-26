@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Fade from 'react-reveal/Fade';
-import makeCarousel from 'react-reveal/makeCarousel';
-// we'll need the Slide component for sliding animations
-// but you can use any other effect
-import Slide from 'react-reveal/Slide';
+// import makeCarousel from 'react-reveal/makeCarousel';
+// // we'll need the Slide component for sliding animations
+// // but you can use any other effect
+// import Slide from 'react-reveal/Slide';
 
 // const Container = props => {
 //     return(
@@ -35,10 +35,10 @@ import Slide from 'react-reveal/Slide';
 // } 
 
 class InfoPanel extends Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
         
-    }
+    // }
 
     render(){
         return(
