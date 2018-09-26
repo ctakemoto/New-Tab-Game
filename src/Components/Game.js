@@ -13,7 +13,7 @@ class Game extends Component {
           numSquares: Math.pow(props.boardDimensions,2),
           numBombs: 0,                          //number of bombs placed on the map
           numFlagged: 0,                        //track # correctly flagged bombs
-          gameFinished: 0,                      //0 while game is ongoing, 1 when it's finished
+          gameFinished: false,                  //false while game is ongoing, true when it's finished
           start: 0,                             //store time at start of game
           time: 0,                              //store duration of game once it's finished
           scoreFlagBonus: 300,                  //total points awarded if the user finds all the flags
@@ -31,7 +31,7 @@ class Game extends Component {
         e.preventDefault();
 
         //only if the game is active
-        if(this.state.gameFinished === 0){
+        if(this.state.gameFinished === false){
 
 
             //get number of correctly flagged so far
@@ -56,6 +56,12 @@ class Game extends Component {
                 squares: board,
                 numFlagged: flagged
             });
+            //check to see if the user has won the game
+            var winCheck = this.checkForWin(board);
+
+            if (winCheck > 0){
+                this.endGame(winCheck);
+            }
         }
         
     }
@@ -69,7 +75,7 @@ class Game extends Component {
         var time = this.state.start === 0 ? Date.now() : this.state.start;
 
         //only if the game is active and square hasn't been flagged
-        if(this.state.gameFinished === 0 && board[coord[0]][coord[1]].state !== 'flagged'){
+        if(this.state.gameFinished === false && board[coord[0]][coord[1]].state !== 'flagged'){
 
 
             board[coord[0]][coord[1]].state = 'clicked';
@@ -151,7 +157,15 @@ class Game extends Component {
         //otherwise calculate score.
 
         //time game took to finish
-        const time = ((Date.now() - this.state.start)/1000).toFixed(2);
+        var time;
+        //when first square clicked is a bomb, then start doesn't have time to be set
+        if (this.state.start !== 0){
+            time = ((Date.now()- this.state.start)/1000).toFixed(2);
+        }
+        else {
+            time = 0;
+        }
+        
 
         //points added for finishing the game quickly if the user won
         const time_score = winCheck === 0 ? 0 : Math.round((1/time) * this.state.scoreTimeBonus);
@@ -163,7 +177,7 @@ class Game extends Component {
         const total_score = time_score + flag_score + win_bonus;
 
         this.setState({
-            gameFinished: 1,
+            gameFinished: true,
             time: time,
             start: 0,
             score: { time_score: time_score, flag_score: flag_score, win_bonus: win_bonus, total_score: total_score}
@@ -201,7 +215,7 @@ class Game extends Component {
 
         this.setState({
             squares: board,
-            gameFinished: 0,
+            gameFinished: false,
             numBombs: numBombs,
             numFlagged: 0,
             score: 0,

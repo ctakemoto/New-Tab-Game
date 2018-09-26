@@ -50,19 +50,10 @@ button {
     text-align: center;
     justify-self: center;
     align-self: center;
-    padding: 50px;
+    padding: 20px;
 
     white-space: pre-wrap; //makes \n work in strings
 
-    transition: all 0.2s linear;
-    -webkit-transition: all 0.2s linear;
-
-    button-display {
-        display: block;
-    }
-    button-hide {
-        display: none;
-    }
 
     .game__info__time {
         margin: 10px;
@@ -71,9 +62,17 @@ button {
         margin: 10px;
         text-align: left;
 
-        .game__info__score__points {
+        .points {
             float: right;
         }
+    }
+
+    .container {
+        border: 1px solid red;
+        position: relative;
+        overflow: hidden;
+        width: 300px;
+        height: 150px;
     }
 
 }

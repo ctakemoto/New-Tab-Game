@@ -95,21 +95,21 @@ button {
   text-align: center;
   justify-self: center;
   align-self: center;
-  padding: 50px;
-  white-space: pre-wrap;
-  transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear; }
-  .game__info button-display {
-    display: block; }
-  .game__info button-hide {
-    display: none; }
+  padding: 20px;
+  white-space: pre-wrap; }
   .game__info .game__info__time {
     margin: 10px; }
   .game__info .game__info__score {
     margin: 10px;
     text-align: left; }
-    .game__info .game__info__score .game__info__score__points {
+    .game__info .game__info__score .points {
       float: right; }
+  .game__info .container {
+    border: 1px solid red;
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 150px; }
 
 body {
   background: #F3F5EF; }
@@ -155,12 +155,13 @@ button {
 
 .app {
   display: grid;
-  grid-template-columns: 1fp auto 1fp;
+  grid-template-columns: 200px auto 200px;
   grid-template-rows: 30px repeat(2, 75px) auto;
   grid-template-areas: ". date ." ". greeting ." ". searchbar ." ". game .";
   grid-row-gap: 10px; }
   .app .date {
     grid-area: date;
+    font-size: 16px;
     justify-self: center; }
   .app .greeting {
     font-size: 50px;
@@ -185,4 +186,15 @@ button {
         justify-items: stretch; }
     .app .game .game__info {
       justify-self: stretch;
-      height: 350px; }
+      height: 350px;
+      display: grid;
+      grid-template-columns: 20px auto 20px;
+      grid-template-rows: 30px auto 30px;
+      grid-template-areas: ". time ." "score score score" ". button ."; }
+      .app .game .game__info .game__info__time {
+        grid-area: time; }
+      .app .game .game__info .game__info__score {
+        grid-area: score; }
+      .app .game .game__info .game__info__new_game {
+        grid-area: button;
+        justify-self: center; }

@@ -3,7 +3,11 @@ import Greeting from './Components/Greeting.js';
 import { SearchBar } from './Components/SearchBar.js';
 import Game from './Components/Game.js';
 import { TodaysDate } from './Components/TimeDate.js';
-
+/* If images stored in src
+import logo from './logo.png';
+// ...
+const image = <img src={logo} className="image" alt="Logo" />;
+*/
 
 class App extends Component {
   constructor(props) {

@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
 
-  "name": "Tab Pet",
-  "description": "Raise and interact with a virtual pet in a new tab.",
+  "name": "New Tab Game",
+  "description": "Some stress relief everytime you open a new tab.",
   "version": "1.0",
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_title": "New Tab"
   },
   "chrome_url_overrides": {
 		"newtab": "index.html"

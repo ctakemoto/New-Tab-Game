@@ -10,7 +10,7 @@ export const SearchBar = props => {
             <form   action='http://www.google.com/search' 
                     method='get' 
                     className='searchbar'>
-                <input type='text' name='q' className='searchbar__searchbox'/>
+                <input type='text' name='q' autoComplete="off" className='searchbar__searchbox'/>
                 <input type='submit' value='Go' className='searchbar__button'/>
             </form>
         </Fade>
