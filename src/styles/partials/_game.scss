@@ -1,39 +1,78 @@
 .game {
-    border: $dark-shade solid 2px;
+    margin: 30px 0 0 0;
+    padding: 15px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px grey;
+
+    .emoji {
+        font-size: 12px;
+    }
+
+}
+
+button {
+    display: inline-block;
+    cursor: pointer;
+    width: 150px;
+    height: 25px;
+    padding: 5px;
+    margin: 5px 0;
+    text-align: center;
     border-radius: 5px;
-    grid-row: 4 / span 5;
-    grid-column: 2 / span 1;
-    padding: 10px;
+    border: none;
 }
 
-.game__board {
-    display: grid;
-    grid-template-columns: repeat(8, minmax(50px, 12.5%));
-    justify-items: stretch;
-}
-
-.game__board__col{
-    display: grid;
-    grid-template-rows: repeat(8, minmax(50px, 12.5%));
-    justify-items: stretch;
+.game_board {
+    padding: 5px;
+    margin: 0;
 }
 
 .game__square {
     text-align: center;
-    min-width: 50px;
-    min-height: 50px;
-    border: $dark-shade solid 1px;
+    min-width: $game-square-dimensions;
+    min-height: $game-square-dimensions;
+    border: solid 1px;
 }
 
-.clicked {
-    background-color: $light-accent;
-}
-.unclicked {
-    background-color: $light-shade;
+.safe-unclicked, .poop-unclicked {
+    
     .game__square__text {
         display: none;
     }
 }
-.bomb {
-    background-color: red;
+
+
+.game__info {
+    //font-family: 'Press Start 2P', cursive;
+    border-radius: 5px;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    padding: 20px;
+
+    white-space: pre-wrap; //makes \n work in strings
+
+
+    .game__info__time {
+        margin: 10px;
+    }
+    .game__info__score {
+        margin: 10px;
+        text-align: left;
+
+        .points {
+            float: right;
+        }
+    }
+
+    .container {
+        border: 1px solid red;
+        position: relative;
+        overflow: hidden;
+        width: 300px;
+        height: 150px;
+    }
+
 }

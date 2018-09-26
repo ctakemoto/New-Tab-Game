@@ -5,14 +5,10 @@
     font-size: 18px;
     width: 80%;
     min-width: 600px;
-    background-color: $light-shade;
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
-    justify-self: center;
     
     .searchbar__searchbox {
         border-radius: 5px 0 0 5px;
-        border: 1px solid grey;
+        border: 1px solid;
         border-right:none;
         padding: 5px;
         margin: 0;
@@ -25,7 +21,7 @@
 
     .searchbar__button {
         border-radius: 0 5px 5px 0;
-        border: 1px solid grey;
+        border: 1px solid;
         border-left: none;
         padding: 5px;
         margin: 0;

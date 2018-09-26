@@ -1,10 +1,12 @@
 /* Colors */
 
-$light-shade: #F7F9FA;
-$light-accent: #C6ACAC;
-$main-color: #F19B5F;
-$dark-accent: #E85252;
-$dark-shade: #303954;
+$light-shade: #F3F5EF;
+$light-accent: rgb(89, 173, 185); //#797CA6;
+$main-color: #DF466F;
+$dark-accent: #CF668F;
+$alt-dark-shade:rgb(133, 43, 96);
+$dark-shade: #262A41;
+$background-color: #D59798;
 
 $square1: #0F91A1;
 $square2: #24C14B;
@@ -12,6 +14,7 @@ $square3: #DDF14A;
 $square4: #F48F31;
 $square5: #DB3D4C;
 
-$font-style: 'Nanum Gothic', sans-serif;
+$font-style: 'Baloo Chettan', cursive;
 
-$num-squares: 64;
+$board-dimensions: 14;
+$game-square-dimensions: 25px;

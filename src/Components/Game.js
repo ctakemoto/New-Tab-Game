@@ -1,71 +1,125 @@
 import React, { Component } from 'react';
-
-export const Square = props => {
-    return (
-        <div className={'game__square ' + props.type +' '+ props.state} 
-            onClick={() => props.clickCallback(props.coord)}>    
-            <span className='game__square__text'>
-                {props.value}
-            </span>
-        </div>
-    );
-}
-
-export const Board = props => {
-
-    return(
-        <div className='game__board'>
-            {props.squares.map((nested, xindex )=>
-                <div className='game__board__col' key={xindex}>
-                    {nested.map((element, yindex) =>
-                        <Square 
-                            key={[xindex, yindex]}
-                            value={element.value === 0 ? ' ' : element.value} 
-                            state={element.state}
-                            type={element.type}
-                            coord={[xindex, yindex]}
-                            clickCallback={props.clickCallback}
-                    />
-                    )}
-                </div>
-            )}
-        </div>
-    );
-
-}
+import Board from './Board.js';
+import InfoPanel from './InfoPanel.js';
+import Fade from 'react-reveal/Fade';
 
 class Game extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          score: 0,
-          squares: null,
-          moves: 0,
+          squares: null,                        //holds arrays representing the board
           boardDimensions: props.boardDimensions,
-          numSquares: Math.pow(props.boardDimensions,2)
+          numSquares: Math.pow(props.boardDimensions,2),
+          numBombs: 0,                          //number of bombs placed on the map
+          numFlagged: 0,                        //track # correctly flagged bombs
+          gameFinished: false,                  //false while game is ongoing, true when it's finished
+          start: 0,                             //store time at start of game
+          time: 0,                              //store duration of game once it's finished
+          scoreFlagBonus: 300,                  //total points awarded if the user finds all the flags
+          scoreTimeBonus: 2000,                 //awarded if the user wins, gets more points the quicker they finish
+          scoreWinBonus: 100,                   //flat bonus awarded for winning the game
+          score: 0                              //final total score at end of the game
         };
     }
 
+    
+    handleDoubleClick = (e, coord) => {
+        //Toggle the flagged state of any square that's been clicked on.
+        //and track the current number of correctly flagged bombs
+
+        e.preventDefault();
+
+        //only if the game is active
+        if(this.state.gameFinished === false){
+
+
+            //get number of correctly flagged so far
+            var flagged = this.state.numFlagged;
+
+            var board = this.state.squares;
+
+            //toggle the flag if double clicked
+            if(board[coord[0]][coord[1]].state === 'flagged'){
+                board[coord[0]][coord[1]].state = 'unclicked'
+                //if the square being unflagged is a bomb, decrease number flagged
+                flagged = board[coord[0]][coord[1]].type === 'poop' ? flagged-1 : flagged;
+            }
+            else {
+                board[coord[0]][coord[1]].state = 'flagged'
+                //if the ssquare being flagged is a bomb, increase number flagged
+                flagged = board[coord[0]][coord[1]].type === 'poop' ? flagged+1 : flagged;
+            }
+
+             //update the board
+             this.setState({
+                squares: board,
+                numFlagged: flagged
+            });
+            //check to see if the user has won the game
+            var winCheck = this.checkForWin(board);
+
+            if (winCheck > 0){
+                this.endGame(winCheck);
+            }
+        }
+        
+    }
+
     handleClick = (coord) => {
+
+
         var board = this.state.squares;
         
-        board[coord[0]][coord[1]].state = 'clicked';
+        //start time on the first click
+        var time = this.state.start === 0 ? Date.now() : this.state.start;
 
-        if(board[coord[0]][coord[1]].type === 'bomb'){
-            //if a bomb is clicked on then the game is over
-            console.log('game over');
+        //only if the game is active and square hasn't been flagged
+        if(this.state.gameFinished === false && board[coord[0]][coord[1]].state !== 'flagged'){
+
+
+            board[coord[0]][coord[1]].state = 'clicked';
+
+            if(board[coord[0]][coord[1]].type === 'poop'){
+                //if a bomb is clicked on then the game is over
+                this.endGame(0);
+            }
+            else if(board[coord[0]][coord[1]].value === 0){
+                
+                //if an empty square is clicked on then need to flood open the surrounding squares
+                board = this.revealSquares(coord, board);
+    
+            }
+
+            //update the state
+            this.setState({
+                squares: board,
+                start: time
+            });
+
+            //check to see if the user has won the game
+            var winCheck = this.checkForWin(board);
+
+            if (winCheck > 0){
+                this.endGame(winCheck);
+            }
         }
-        else if(board[coord[0]][coord[1]].value === 0 ){
-            //if an empty square is clicked on then need to flood open the surrounding squares
-            board = this.revealSquares(coord, board);
+    }
 
+
+    checkForWin = (board) => {
+        //check squares to see if the player has won
+        //If the game is on-going func with return 0, otherwise return 1
+        
+        for(var i = 0; i < this.state.boardDimensions; i++){
+            for(var j=0; j < this.state.boardDimensions; j++){
+                if(board[i][j].state === 'unclicked'){
+                    //if there is a square that hasn't been clicked or flagged yet, then the game isn't won 
+                    return 0;
+                }
+            }
         }
-
-        //update the board
-        this.setState({
-            squares: board
-        });
+        return 1;
     }
 
     revealSquares = (coord, board) => {
@@ -83,12 +137,12 @@ class Game extends Component {
             for(var i=next.xmin; i <= next.xmax; i++ ){
                 for(var j=next.ymin; j <= next.ymax; j++){
                     //If the square being looked at isn't adjacent to a bomb then look at the surrounding squares
-                    if(board[i][j].state !== 'clicked' & board[i][j].value === 0 ){
+                    if(board[i][j].state === 'unclicked' & board[i][j].value === 0 ){
                         board[i][j].state = 'clicked';
                         toExplore.push([i,j]);
                     }
                     //if it's a number, reveal it but don't look at surrounding squares
-                    else if (board[i][j].state !== 'clicked' & board[i][j].value > 0){
+                    else if (board[i][j].state === 'unclicked' & board[i][j].value > 0){
                         board[i][j].state = 'clicked';
                     }
                 }
@@ -97,16 +151,52 @@ class Game extends Component {
         return board;
     }
 
+    endGame = (winCheck) => {
+        //called when a bomb has been clicked on or the user has won the game.
+        //if winCheck == 0, then that means the user has lost.
+        //otherwise calculate score.
+
+        //time game took to finish
+        var time;
+        //when first square clicked is a bomb, then start doesn't have time to be set
+        if (this.state.start !== 0){
+            time = ((Date.now()- this.state.start)/1000).toFixed(2);
+        }
+        else {
+            time = 0;
+        }
+        
+
+        //points added for finishing the game quickly if the user won
+        const time_score = winCheck === 0 ? 0 : Math.round((1/time) * this.state.scoreTimeBonus);
+        //points added for percentage of bombs the user was able to flag
+        const flag_score = Math.round((this.state.numFlagged/this.state.numBombs) * this.state.scoreFlagBonus);
+        //there's a bonus for winning the game
+        const win_bonus = winCheck === 0 ? 0 : this.state.scoreWinBonus;
+
+        const total_score = time_score + flag_score + win_bonus;
+
+        this.setState({
+            gameFinished: true,
+            time: time,
+            start: 0,
+            score: { time_score: time_score, flag_score: flag_score, win_bonus: win_bonus, total_score: total_score}
+        });
+    }
+
+
     componentWillMount = () => {
         this.initGame();
     }
 
+    //Initialize the Game
+    //  Create board and populate randomly with bombs
     initGame = () => {
-        //each row is it's own array
+        //each column is it's own array
         var board = new Array(this.state.boardDimensions).fill(0).map(x => Array(this.state.boardDimensions).fill().map(x => ({value:0, state:'unclicked', type:'safe'})));
 
-        //chose a random number of bombs between a fourth and a third the number of squares
-        const numBombs = this.randInt(this.state.numSquares/4,this.state.numSquares/3)
+        //chose a random number of bombs between a fifth and a fourth the number of squares
+        const numBombs = this.randInt(this.state.numSquares/5,this.state.numSquares/4)
 
         var currentSquare;
 
@@ -117,21 +207,21 @@ class Game extends Component {
             //check to see if the square has already been set as a bomb before
             if (board[currentSquare[0]][currentSquare[1]].type === 'safe'){
                 board[currentSquare[0]][currentSquare[1]].value = 'x';
-                board[currentSquare[0]][currentSquare[1]].type = 'bomb';
+                board[currentSquare[0]][currentSquare[1]].type = 'poop';
                 board = this.setSurroundingNumbers(board, currentSquare);
-            }
-            else {
-                //if it has then don't re-do it
-
             }
             
         }
 
         this.setState({
-            squares: board 
+            squares: board,
+            gameFinished: false,
+            numBombs: numBombs,
+            numFlagged: 0,
+            score: 0,
+            start: 0
         });
     }
-
 
     getSurroundingSquares = (currentSquare) => {
         //get range of the surrounding square coordinates
@@ -145,7 +235,7 @@ class Game extends Component {
     }
 
     setSurroundingNumbers = (board, currentSquare) => { 
-        //and adds a count of one to each of the surrounding squares
+        //adds a count of one to each of the surrounding squares to the current square
 
         let coord = this.getSurroundingSquares(currentSquare);
 
@@ -168,6 +258,7 @@ class Game extends Component {
     }
 
     randSquare = () => {
+        //picks a random coordinate pair which specifies a certain square
         var pos = new Array(2);
         pos[0] = this.randInt(0, this.state.boardDimensions);
         pos[1] = this.randInt(0, this.state.boardDimensions);
@@ -176,9 +267,15 @@ class Game extends Component {
 
     render(){
         return (
-            <div className='game'>
-                <Board squares={this.state.squares} clickCallback={this.handleClick}/>
-            </div>
+            <Fade bottom when={this.props.showGame}>
+                <div className='game'>
+                    <Board {...this.state}
+                        clickCallback={this.handleClick} 
+                        doubleCallback={this.handleDoubleClick}
+                        />
+                    <InfoPanel {...this.state} newGame={this.initGame}/>
+                </div>
+            </Fade>
         );
     }
 }

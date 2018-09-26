@@ -12,16 +12,6 @@ html {
   box-sizing: inherit; }
 
 /* Colors */
-.clock {
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
-  justify-self: start; }
-
-.date {
-  grid-row: 1 / span 1;
-  grid-column: 3 / span 1;
-  justify-self: end; }
-
 /*
 Naming
 class: name-name
@@ -29,20 +19,12 @@ element of class: name-name__element
 class modifiers: name-name--modifier
 */
 .app {
-  display: grid;
-  grid-template: 75px repeat(12, 1fp)/min-content(150px) auto min-content(150px);
-  grid-row-gap: 20px;
-  font-family: "Nanum Gothic", sans-serif;
-  margin: 0; }
+  font-family: "Baloo Chettan", cursive;
+  margin: 0;
+  padding: 0; }
 
 .header {
   font-size: 28px; }
-
-.greeting {
-  grid-row: 3 / span 1;
-  grid-column: 2 / span 1;
-  font-size: 50px;
-  justify-self: center; }
 
 .searchbar {
   padding: 15px;
@@ -50,14 +32,10 @@ class modifiers: name-name--modifier
   border-radius: 5px;
   font-size: 18px;
   width: 80%;
-  min-width: 600px;
-  background-color: #F7F9FA;
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  justify-self: center; }
+  min-width: 600px; }
   .searchbar .searchbar__searchbox {
     border-radius: 5px 0 0 5px;
-    border: 1px solid grey;
+    border: 1px solid;
     border-right: none;
     padding: 5px;
     margin: 0;
@@ -68,7 +46,7 @@ class modifiers: name-name--modifier
     width: calc(100% - 50px); }
   .searchbar .searchbar__button {
     border-radius: 0 5px 5px 0;
-    border: 1px solid grey;
+    border: 1px solid;
     border-left: none;
     padding: 5px;
     margin: 0;
@@ -79,35 +57,144 @@ class modifiers: name-name--modifier
     width: 50px; }
 
 .game {
-  border: #303954 solid 2px;
+  margin: 30px 0 0 0;
+  padding: 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey; }
+  .game .emoji {
+    font-size: 12px; }
+
+button {
+  display: inline-block;
+  cursor: pointer;
+  width: 150px;
+  height: 25px;
+  padding: 5px;
+  margin: 5px 0;
+  text-align: center;
   border-radius: 5px;
-  grid-row: 4 / span 5;
-  grid-column: 2 / span 1;
-  padding: 10px; }
+  border: none; }
 
-.game__board {
-  display: grid;
-  grid-template-columns: repeat(8, minmax(50px, 12.5%));
-  justify-items: stretch; }
-
-.game__board__col {
-  display: grid;
-  grid-template-rows: repeat(8, minmax(50px, 12.5%));
-  justify-items: stretch; }
+.game_board {
+  padding: 5px;
+  margin: 0; }
 
 .game__square {
   text-align: center;
-  min-width: 50px;
-  min-height: 50px;
-  border: #303954 solid 1px; }
+  min-width: 25px;
+  min-height: 25px;
+  border: solid 1px; }
 
-.clicked {
-  background-color: #C6ACAC; }
+.safe-unclicked .game__square__text, .poop-unclicked .game__square__text {
+  display: none; }
 
-.unclicked {
-  background-color: #F7F9FA; }
-  .unclicked .game__square__text {
-    display: none; }
+.game__info {
+  border-radius: 5px;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+  padding: 20px;
+  white-space: pre-wrap; }
+  .game__info .game__info__time {
+    margin: 10px; }
+  .game__info .game__info__score {
+    margin: 10px;
+    text-align: left; }
+    .game__info .game__info__score .points {
+      float: right; }
+  .game__info .container {
+    border: 1px solid red;
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 150px; }
 
-.bomb {
-  background-color: red; }
+body {
+  background: #F3F5EF; }
+
+.app {
+  color: #DF466F; }
+
+button {
+  color: white;
+  background-color: #852b60; }
+
+.game {
+  background: #262A41;
+  border-color: #262A41; }
+
+.game__board {
+  background: #F3F5EF; }
+
+.game__square {
+  border-color: #262A41;
+  color: #262A41; }
+
+.safe-unclicked, .poop-unclicked {
+  background-color: #F3F5EF; }
+
+.safe-clicked {
+  background-color: #59adb9; }
+
+.poop-clicked, .poop-end {
+  background-color: #DF466F; }
+
+.poop-flagged, .safe-flagged {
+  background-color: #F3F5EF; }
+
+.game__info {
+  background-color: #CF668F;
+  color: #F3F5EF; }
+
+.searchbar {
+  background-color: #59adb9; }
+  .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
+    border-color: grey; }
+
+.app {
+  display: grid;
+  grid-template-columns: 200px auto 200px;
+  grid-template-rows: 30px repeat(2, 75px) auto;
+  grid-template-areas: ". date ." ". greeting ." ". searchbar ." ". game .";
+  grid-row-gap: 10px; }
+  .app .date {
+    grid-area: date;
+    font-size: 16px;
+    justify-self: center; }
+  .app .greeting {
+    font-size: 50px;
+    grid-area: greeting;
+    justify-self: center; }
+  .app .searchbar {
+    grid-area: searchbar;
+    justify-self: center; }
+  .app .game {
+    grid-area: game;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 15px; }
+    .app .game .game__board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 25px);
+      width: 350px; }
+      .app .game .game__board .game__board__col {
+        display: grid;
+        grid-template-rows: repeat(auto-fill, 25px);
+        justify-items: stretch; }
+    .app .game .game__info {
+      justify-self: stretch;
+      height: 350px;
+      display: grid;
+      grid-template-columns: 20px auto 20px;
+      grid-template-rows: 30px auto 30px;
+      grid-template-areas: ". time ." "score score score" ". button ."; }
+      .app .game .game__info .game__info__time {
+        grid-area: time; }
+      .app .game .game__info .game__info__score {
+        grid-area: score; }
+      .app .game .game__info .game__info__new_game {
+        grid-area: button;
+        justify-self: center; }

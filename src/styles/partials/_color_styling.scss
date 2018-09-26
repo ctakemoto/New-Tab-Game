@@ -1,0 +1,57 @@
+
+body {
+    background: $light-shade;
+}
+
+.app {
+    color: $main-color;
+}
+
+button {
+    color: white;
+    background-color: $alt-dark-shade;
+}
+
+.game {
+    background: $dark-shade;
+    border-color: $dark-shade;
+}
+
+.game__board {
+    background: $light-shade;
+}
+.game__square {
+    border-color: $dark-shade;
+    color: $dark-shade;
+}
+
+.safe-unclicked, .poop-unclicked {
+    background-color: $light-shade;
+}
+
+.safe-clicked {
+    background-color: $light-accent;
+}
+
+.poop-clicked, .poop-end {
+    background-color: $main-color;
+}
+
+.poop-flagged, .safe-flagged {
+
+    background-color: $light-shade;
+}
+
+.game__info {
+    background-color: $dark-accent;
+    color: $light-shade;
+}
+
+.searchbar {
+    background-color: $light-accent;
+    .searchbar__button, .searchbar__searchbox {
+        border-color: grey;
+    }
+
+}
+

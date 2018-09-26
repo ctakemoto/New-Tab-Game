@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRevealText from 'react-reveal-text';
 
-const Greeting = props => {
 
-    //time interval start and finish in hhmm format followed by greeting
+export const Greeting = props =>  {
+
     const greetings = [
         [500,1159,'Good Morning'],
         [1200,1659,'Good Afternoon'],
         [1700,2159,'Good Evening'],
         [2200,2459,'Good Night'],
         [0,459,'Good Night']
-    ]
-
+    ];
 
     const timeInInterval = (time, start, finish) => {
         //returns True if time is between start and finish and False if not
@@ -39,11 +39,13 @@ const Greeting = props => {
     }
 
     return(
-        <div className="greeting">
+        <ReactRevealText 
+            show={props.showGreeting}
+            className="greeting"
+        >
             {pickGreeting()} 
-        </div>
+        </ReactRevealText>
     );
-
 }
 
 Greeting.propTypes = {

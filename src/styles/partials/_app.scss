@@ -5,15 +5,13 @@ element of class: name-name__element
 class modifiers: name-name--modifier
 */
 
+
 .app {
-    display: grid;
-    grid-template: 75px repeat(12, 1fp) / min-content(150px) auto min-content(150px);
-    grid-row-gap: 20px;
     font-family: $font-style;
     margin: 0;
+    padding: 0;
 }
 
 .header {
     font-size: 28px;
-    
 }

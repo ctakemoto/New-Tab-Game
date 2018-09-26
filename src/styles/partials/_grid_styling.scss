@@ -1,0 +1,89 @@
+.app {
+    display: grid;
+    grid-template-columns: 200px auto 200px;
+    grid-template-rows: 30px repeat(2,75px)  auto;
+    grid-template-areas: 
+    ". date ."
+    ". greeting ."
+    ". searchbar ."
+    ". game ."; 
+    grid-row-gap: 10px;
+
+
+    .date {
+        grid-area: date;
+        font-size: 16px;
+        justify-self: center;
+    }   
+
+    .greeting {
+        font-size: 50px;
+        grid-area: greeting;
+        justify-self: center;
+    }
+
+ 
+    .searchbar {
+        grid-area: searchbar;
+        justify-self: center;
+    }
+    
+
+    .game {
+        grid-area: game;
+        justify-self: center;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 15px;
+
+        .game__board {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 25px);
+            width: $game-square-dimensions * $board-dimensions;
+        
+            
+            .game__board__col {
+                display: grid;
+                grid-template-rows: repeat(auto-fill, 25px);
+                justify-items: stretch;
+            }
+
+
+        }
+
+        .game__info {
+            justify-self: stretch;
+            height: $game-square-dimensions * $board-dimensions;
+
+            display: grid;
+            //justify-content: center;
+            grid-template-columns: 20px auto 20px;
+            grid-template-rows: 30px auto 30px;
+            grid-template-areas: 
+                ". time ."
+                "score score score"
+                ". button .";
+
+            .game__info__time {
+                grid-area: time;
+            }
+            .game__info__score {
+                grid-area: score;
+            }
+            .game__info__new_game {
+                grid-area: button;
+                justify-self: center;
+            }
+        }
+
+     
+
+    }
+}
+
+
+
+
+
+
