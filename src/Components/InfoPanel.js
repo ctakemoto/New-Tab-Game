@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import Fade from 'react-reveal/Fade';
 import makeCarousel from 'react-reveal/makeCarousel';
-// we'll need the Slide component for sliding animations
-// but you can use any other effect
 import Slide from 'react-reveal/Slide';
 
 const Arrow = props => {
@@ -73,20 +71,23 @@ class InfoPanel extends Component {
 
                 <Carousel maxTurns='0'>
                     <Slide right>
-                        <div className='game__info__highscore'>
-                            {'Current Highscore: '+this.state.highscore}
+                    <div className='carousel__title'>Current Highscore</div>
+                        <div className='game__info__highscore carousel__text'>
+                            {this.state.highscore + ' pts'}
+                        </div>
+                    </Slide>
+                    <Slide right>
+                        <div>
+                            <div className='carousel__title'>Instructions</div>
+                            <p className='carousel__text'>
+                                Find the poops and mark them with flags (right click) before someone steps on them!
+                            </p>
                         </div>
                     </Slide>
                     <Slide right>
                     <div>
-                        <h1>Slide 2</h1>
-                        <p>Slide Description</p>
-                    </div>
-                    </Slide>
-                    <Slide right>
-                    <div>
-                        <h1>Slide 3</h1>
-                        <p>Slide Description</p>
+                    <div className='carousel__title'>Slide Title</div>
+                        <p className='carousel__text'>Slide Description</p>
                     </div>
                     </Slide>
                 </Carousel>

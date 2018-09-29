@@ -112,6 +112,16 @@ button {
     overflow: hidden;
     width: 300px;
     height: 100px; }
+    .game__info .game__info__carousel .carousel__title {
+      margin: 0 5px 5px 5px;
+      font-size: 20px; }
+    .game__info .game__info__carousel .carousel__text {
+      text-align: left;
+      margin: 0 35px 0 35px;
+      font-size: 14px; }
+    .game__info .game__info__carousel .game__info__highscore {
+      font-size: 40px;
+      text-align: center; }
   .game__info .arrow {
     text-shadow: 1px 1px 1px #fff;
     z-index: 100;
@@ -121,7 +131,8 @@ button {
     top: 0;
     width: 10%;
     cursor: pointer;
-    user-select: none; }
+    user-select: none;
+    font-size: 20px; }
 
 body {
   background: #F3F5EF; }
@@ -162,6 +173,8 @@ button {
   .game__info .emph {
     color: #262A41; }
   .game__info .arrow {
+    color: #852b60; }
+  .game__info .carousel__title {
     color: #262A41; }
 
 .searchbar {
