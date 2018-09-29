@@ -85,8 +85,17 @@ class InfoPanel extends Component {
                         </div>
                     </Slide>
                     <Slide right>
+                        <div>
+                            <div className='carousel__title'>Instructions</div>
+                            <p className='carousel__text'>
+                                Click on a flower to reveal what's there. 
+                                If a number appears, that's the number of poops nearby.
+                            </p>
+                        </div>
+                    </Slide>
+                    <Slide right>
                     <div>
-                    <div className='carousel__title'>Slide Title</div>
+                    <div className='carousel__title'>Settings</div>
                         <p className='carousel__text'>Slide Description</p>
                     </div>
                     </Slide>

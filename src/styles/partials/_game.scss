@@ -47,7 +47,8 @@ button {
 
 .game__info {
     //font-family: 'Press Start 2P', cursive;
-    border-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
     text-align: center;
     justify-self: center;
     align-self: center;
@@ -60,7 +61,7 @@ button {
         margin: 10px;
     }
     .game__info__score {
-        margin: 10px;
+        margin: 5px;
         text-align: left;
 
         .points {

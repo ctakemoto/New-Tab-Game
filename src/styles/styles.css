@@ -92,7 +92,8 @@ button {
   display: none; }
 
 .game__info {
-  border-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   text-align: center;
   justify-self: center;
   align-self: center;
@@ -101,7 +102,7 @@ button {
   .game__info .game__info__time {
     margin: 10px; }
   .game__info .game__info__score {
-    margin: 10px;
+    margin: 5px;
     text-align: left; }
     .game__info .game__info__score .points {
       float: right; }
