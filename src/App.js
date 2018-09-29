@@ -32,7 +32,7 @@ class App extends Component {
       },
       locale: 'en-US',
       boardDimensions: 14
-    }
+    };
 
   }
 

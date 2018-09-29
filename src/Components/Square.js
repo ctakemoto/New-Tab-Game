@@ -24,7 +24,7 @@ export const Square = props => {
                 <Emoji symbol="🌼" label="flower"/> :
                 <span className='game__square__text'>
                     {
-                        props.state === 'flagged' ? <Emoji symbol="⚠️" label="flag"/> :
+                        props.state === 'flagged' ? <Emoji symbol="🏴" label="flag"/> :
                         props.value === 0 ? ' ' : 
                         props.value === 'x' ? <Emoji symbol="💩" label="poop"/> :
                         props.value
