@@ -58,16 +58,16 @@
 
             display: grid;
             //justify-content: center;
-            grid-template-columns: 20px auto 20px;
-            grid-template-rows: 30px 30px auto 30px;
+            grid-template-columns: 100%;
+            grid-template-rows: 100px 30px auto 30px;
             grid-template-areas: 
-                ". highscore ."    
-                ". time ."
-                "score score score"
-                ". button .";
+                "carousel"    
+                "time"
+                "score"
+                "button";
 
-            .game__info__highscore {
-                grid-area: highscore;
+            .game__info__carousel {
+                grid-area: carousel;
             }
             .game__info__time {
                 grid-area: time;

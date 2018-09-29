@@ -45,6 +45,12 @@ button {
 .game__info {
     background-color: $dark-accent;
     color: $light-shade;
+    .emph {
+        color: $dark-shade;
+    }
+    .arrow {
+        color: $dark-shade;
+    }
 }
 
 .searchbar {
