@@ -69,7 +69,7 @@ class InfoPanel extends Component {
         return(
             <div className='game__info'>
 
-                <Carousel maxTurns='0'>
+                <Carousel maxTurns={0}>
                     <Slide right>
                     <div className='carousel__title'>Current Highscore</div>
                         <div className='game__info__highscore carousel__text'>
