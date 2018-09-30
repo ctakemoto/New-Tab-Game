@@ -53,7 +53,7 @@ class InfoPanel extends Component {
 
             chrome.storage.sync.set({highscore: this.props.score.total_score}, () => {
                 // Set the new highscore
-                console.log("Set new highscore: " + this.props.score.total_score);
+                console.log('Set new highscore: ' + this.props.score.total_score);
             });
 
             this.setState({highscore: this.props.score.total_score});
