@@ -9,6 +9,11 @@ Game Square
 
 */
 
+const unclickedSquareTextStyle = {
+    display: 'none' 
+}
+
+
 export const Square = props => {
     return (
         <div className={props.gameFinished && props.type === 'poop' ? 
@@ -22,7 +27,15 @@ export const Square = props => {
                 props.state === 'unclicked' && props.gameFinished === false ? 
                 
                 <Emoji symbol="🌼" label="flower"/> :
-                <span className='game__square__text'>
+                <span   className='game__square__text' 
+                        style={props.state === 'unclicked' && !props.gameFinished ?
+                                unclickedSquareTextStyle 
+                                :
+                                props.gameFinished && props.type !== 'poop' && props.state === 'unclicked' ?
+                                unclickedSquareTextStyle
+                                :
+                                null
+                                }>
                     {
                         props.state === 'flagged' ? <Emoji symbol="🏴" label="flag"/> :
                         props.value === 0 ? ' ' : 

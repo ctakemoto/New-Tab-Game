@@ -88,9 +88,6 @@ button {
   min-height: 25px;
   border: solid 1px; }
 
-.safe-unclicked .game__square__text, .poop-unclicked .game__square__text {
-  display: none; }
-
 .game__info {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -186,8 +183,8 @@ button {
 .app {
   display: grid;
   grid-template-columns: 200px auto 200px;
-  grid-template-rows: 30px repeat(2, 75px) auto;
-  grid-template-areas: ". date ." ". greeting ." ". searchbar ." ". game .";
+  grid-template-rows: 20px 30px repeat(2, 75px) auto;
+  grid-template-areas: ". . settings" ". date ." ". greeting ." ". searchbar ." ". game .";
   grid-row-gap: 10px; }
   .app .date {
     grid-area: date;
@@ -200,6 +197,9 @@ button {
   .app .searchbar {
     grid-area: searchbar;
     justify-self: center; }
+  .app .settings {
+    grid-area: settings;
+    justify-self: end; }
   .app .game {
     grid-area: game;
     justify-self: center;

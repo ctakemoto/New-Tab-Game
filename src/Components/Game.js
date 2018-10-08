@@ -168,7 +168,7 @@ class Game extends Component {
         
 
         //points added for finishing the game quickly if the user won
-        const time_score = winCheck === 0 ? 0 : Math.round((1/time) * this.state.scoreTimeBonus);
+        const time_score = winCheck === 0 ? 0 : Math.round((30/time) * this.state.scoreTimeBonus);
         //points added for percentage of bombs the user was able to flag
         const flag_score = Math.round((this.state.numFlagged/this.state.numBombs) * this.state.scoreFlagBonus);
         //there's a bonus for winning the game

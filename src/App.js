@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Greeting from './Components/Greeting.js';
 import { SearchBar } from './Components/SearchBar.js';
 import Game from './Components/Game.js';
+import Settings from './Components/Settings.js';
 import { TodaysDate } from './Components/TimeDate.js';
+import Backgrounds from './resources/backgrounds.json';
 /* If images stored in src
 import logo from './logo.png';
 // ...
@@ -33,7 +35,7 @@ class App extends Component {
       locale: 'en-US',
       boardDimensions: 14
     };
-
+    this.backgrounds = Backgrounds;
   }
 
   componentDidMount() {
@@ -63,6 +65,7 @@ class App extends Component {
     return (
       <div className='app'>
 
+        <Settings />
         <TodaysDate {...this.state} {...this.settings}/>
         <Greeting {...this.state} {...this.settings}/>
         <SearchBar {...this.state} {...this.settings}/>

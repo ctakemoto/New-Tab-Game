@@ -1,4 +1,5 @@
 /* global chrome */
+
 import React, { Component } from 'react';
 import Fade from 'react-reveal/Fade';
 import makeCarousel from 'react-reveal/makeCarousel';
@@ -31,17 +32,22 @@ class InfoPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            highscore: 0
+            highscore: 0,
+            fastestTime: null,
+            numGamesWon: 0
         };
     }
 
     componentDidMount() {
-        var highscore;
+        //grab stored game data on component load
+
+        var highscore, fastestTime, numGamesWon;
         //If there is a highscore stored in chrome then get it, otherwise set to 0
-        chrome.storage.sync.get(['highscore'], (data) => {
-            console.log('get highscore: '+ data.highscore);
+        chrome.storage.sync.get(['highscore','fastestTime', 'numGamesWon'], (data) => {
+            fastestTime = typeof data.fastestTime === 'undefined' ? null : data.fastestTime;
             highscore = typeof data.highscore === 'undefined' ? 0 : data.highscore;
-            this.setState({highscore: highscore});
+            numGamesWon = typeof data.numGamesWon === 'undefined' ? 0 : data.numGamesWon;
+            this.setState({highscore: highscore, fastestTime: fastestTime, numGamesWon: numGamesWon});
           });
           
     }
@@ -57,6 +63,22 @@ class InfoPanel extends Component {
             });
 
             this.setState({highscore: this.props.score.total_score});
+        }
+        //if the game was won
+        if(this.props.score.win_bonus > 0){
+            //if there is no current fastest time or fastest time is more than current record, then set fastest time to the current time otherwise set to the current record
+            var newTimeRecord = 
+                this.state.fastestTime === null || this.state.fastestTime > this.props.time ?
+                    this.props.score.time :
+                    this.state.fastestTime;
+           
+
+            chrome.storage.sync.set({fastestTime: newTimeRecord, numGamesWon: this.state.numGamesWon+1}, () => {
+                // Set the new highscore
+                console.log('Set new fastest time: ' + newTimeRecord);
+            });
+            this.setState({fastestTime: newTimeRecord, numGamesWon: this.state.numGamesWon+1});
+
         }
     }
 
@@ -77,6 +99,18 @@ class InfoPanel extends Component {
                         </div>
                     </Slide>
                     <Slide right>
+                    <div className='carousel__title'>Current Fastest Time</div>
+                        <div className='game__info__highscore carousel__text'>
+                            {this.state.fastestTime === null ? 'No record' : this.state.fastestTime + ' seconds'}
+                        </div>
+                    </Slide>
+                    <Slide right>
+                    <div className='carousel__title'>Number of Games Won</div>
+                        <div className='game__info__highscore carousel__text'>
+                            {this.state.numGamesWon + ' games'}
+                        </div>
+                    </Slide>
+                    <Slide right>
                         <div>
                             <div className='carousel__title'>Instructions</div>
                             <p className='carousel__text'>
@@ -92,12 +126,6 @@ class InfoPanel extends Component {
                                 If a number appears, that's the number of poops nearby.
                             </p>
                         </div>
-                    </Slide>
-                    <Slide right>
-                    <div>
-                    <div className='carousel__title'>Settings</div>
-                        <p className='carousel__text'>Slide Description</p>
-                    </div>
                     </Slide>
                 </Carousel>
                     

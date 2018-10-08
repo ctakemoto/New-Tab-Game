@@ -1,8 +1,9 @@
 .app {
     display: grid;
     grid-template-columns: 200px auto 200px;
-    grid-template-rows: 30px repeat(2,75px)  auto;
+    grid-template-rows: 20px 30px repeat(2,75px)  auto;
     grid-template-areas: 
+    ". . settings"
     ". date ."
     ". greeting ."
     ". searchbar ."
@@ -28,6 +29,10 @@
         justify-self: center;
     }
     
+    .settings {
+        grid-area: settings;
+        justify-self: end;
+    }
 
     .game {
         grid-area: game;
