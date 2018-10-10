@@ -11,7 +11,7 @@ class Settings extends Component {
     render(){
         return(
             <div className='settings' onClick={this.handleClick}>
-                <i class="fas fa-cog fa-lg"></i>
+                <i className="fas fa-cog fa-lg"></i>
             </div>
         );
     }    
