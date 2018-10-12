@@ -10,6 +10,7 @@ body {
 button {
     color: white;
     background-color: $alt-dark-shade;
+    box-shadow: 1px 1px 1px $dark-shade;
 }
 
 .game {
@@ -50,6 +51,7 @@ button {
     }
     .arrow {
         color: $alt-dark-shade;
+        text-shadow: 1px 1px 1px $dark-shade;
     }
     .carousel__title {
         color: $dark-shade;

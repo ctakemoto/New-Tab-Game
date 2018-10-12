@@ -121,7 +121,6 @@ button {
       font-size: 40px;
       text-align: center; }
   .game__info .arrow {
-    text-shadow: 1px 1px 1px #fff;
     z-index: 100;
     line-height: 100px;
     text-align: center;
@@ -140,7 +139,8 @@ body {
 
 button {
   color: white;
-  background-color: #852b60; }
+  background-color: #852b60;
+  box-shadow: 1px 1px 1px #262A41; }
 
 .game {
   background: #262A41;
@@ -171,7 +171,8 @@ button {
   .game__info .emph {
     color: #262A41; }
   .game__info .arrow {
-    color: #852b60; }
+    color: #852b60;
+    text-shadow: 1px 1px 1px #262A41; }
   .game__info .carousel__title {
     color: #262A41; }
 
@@ -183,8 +184,8 @@ button {
 .app {
   display: grid;
   grid-template-columns: 150px auto 150px;
-  grid-template-rows: 15px 30px repeat(2, 75px) auto;
-  grid-template-areas: ". . settings" ". date ." ". greeting ." ". searchbar ." ". game .";
+  grid-template-rows: 30px repeat(2, 75px) auto;
+  grid-template-areas: ". date settings" ". greeting ." ". searchbar ." ". game .";
   grid-row-gap: 10px; }
   .app .date {
     grid-area: date;

@@ -5,10 +5,11 @@ import Popup from "reactjs-popup";
 
 class Settings extends Component {
 
+
     handleClick = () => {
         console.log('clearing');
         chrome.storage.sync.set({highscore: 0, fastestTime: null, numGamesWon: 0}, () => {
-            console.log('Records cleared');
+            console.log('Records cleared!');
         });
     }
 
@@ -17,7 +18,11 @@ class Settings extends Component {
             <Popup trigger={<i className="fas fa-cog fa-lg settings-button"></i>
                             }
                     position='left top'
-                    contentStyle={{ justifyContent: "center", borderRadius: "5px" }}
+                    contentStyle={{ justifyContent: 'center', 
+                                    borderRadius: '5px',
+                                    boxShadow: '5px 5px 10px grey',
+                                    textAlign: 'center'
+                                }}
                     closeOnDocumentClick
             >
             <div className='settings-panel'>

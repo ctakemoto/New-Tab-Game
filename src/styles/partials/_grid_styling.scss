@@ -1,10 +1,9 @@
 .app {
     display: grid;
     grid-template-columns: 150px auto 150px;
-    grid-template-rows: 15px 30px repeat(2,75px) auto;
+    grid-template-rows: 30px repeat(2,75px) auto;
     grid-template-areas: 
-    ". . settings"
-    ". date ."
+    ". date settings"
     ". greeting ."
     ". searchbar ."
     ". game ."; 
