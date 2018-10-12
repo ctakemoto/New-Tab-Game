@@ -153,16 +153,16 @@ button {
   border-color: #262A41;
   color: #262A41; }
 
-.safe-unclicked, .poop-unclicked {
+.safe-unclicked, .target-unclicked {
   background-color: #F3F5EF; }
 
 .safe-clicked {
   background-color: #59adb9; }
 
-.poop-clicked, .poop-end {
+.target-clicked, .target-end {
   background-color: #DF466F; }
 
-.poop-flagged, .safe-flagged {
+.target-flagged, .safe-flagged {
   background-color: #F3F5EF; }
 
 .game__info {

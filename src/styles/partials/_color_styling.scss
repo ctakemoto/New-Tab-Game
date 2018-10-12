@@ -25,7 +25,7 @@ button {
     color: $dark-shade;
 }
 
-.safe-unclicked, .poop-unclicked {
+.safe-unclicked, .target-unclicked {
     background-color: $light-shade;
 }
 
@@ -33,11 +33,11 @@ button {
     background-color: $light-accent;
 }
 
-.poop-clicked, .poop-end {
+.target-clicked, .target-end {
     background-color: $main-color;
 }
 
-.poop-flagged, .safe-flagged {
+.target-flagged, .safe-flagged {
 
     background-color: $light-shade;
 }

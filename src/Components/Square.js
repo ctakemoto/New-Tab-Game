@@ -5,7 +5,7 @@ import Emoji from './Emoji.js';
 Game Square
     Value: #, x
     State: unclicked, clicked, flagged
-    Type: safe, poop
+    Type: safe, target
 
 */
 
@@ -16,7 +16,7 @@ const unclickedSquareTextStyle = {
 
 export const Square = props => {
     return (
-        <div className={props.gameFinished && props.type === 'poop' ? 
+        <div className={props.gameFinished && props.type === 'target' ? 
                 'game__square ' + props.type + '-end'
                 : 'game__square ' + props.type +'-'+ props.state
                 } 
@@ -26,12 +26,12 @@ export const Square = props => {
             {
                 props.state === 'unclicked' && props.gameFinished === false ? 
                 
-                <Emoji symbol="🌼" label="flower"/> :
+                '' :
                 <span   className='game__square__text' 
                         style={props.state === 'unclicked' && !props.gameFinished ?
                                 unclickedSquareTextStyle 
                                 :
-                                props.gameFinished && props.type !== 'poop' && props.state === 'unclicked' ?
+                                props.gameFinished && props.type !== 'target' && props.state === 'unclicked' ?
                                 unclickedSquareTextStyle
                                 :
                                 null
@@ -39,7 +39,7 @@ export const Square = props => {
                     {
                         props.state === 'flagged' ? <Emoji symbol="🏴" label="flag"/> :
                         props.value === 0 ? ' ' : 
-                        props.value === 'x' ? <Emoji symbol="💩" label="poop"/> :
+                        props.value === 'x' ? <Emoji symbol="💎" label="target"/> :
                         props.value
                     
                     } 

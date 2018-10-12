@@ -34,7 +34,8 @@ class InfoPanel extends Component {
         this.state = {
             highscore: 0,
             fastestTime: null,
-            numGamesWon: 0
+            numGamesWon: 0,
+            checkedHighscore: null
         };
     }
 
@@ -68,8 +69,8 @@ class InfoPanel extends Component {
         if(this.props.score.win_bonus > 0){
             //if there is no current fastest time or fastest time is more than current record, then set fastest time to the current time otherwise set to the current record
             var newTimeRecord = 
-                this.state.fastestTime === null || this.state.fastestTime > this.props.time ?
-                    this.props.score.time :
+                typeof this.state.fastestTime === 'undefined' || this.state.fastestTime === null || this.state.fastestTime > this.props.time ?
+                    this.props.time :
                     this.state.fastestTime;
            
 
@@ -83,10 +84,12 @@ class InfoPanel extends Component {
     }
 
     render(){
-        if(this.props.gameFinished){
+        if(this.props.gameFinished && this.state.checkedHighscore != this.props.gameID){
             //if the game is over, check for highscore
             this.checkForHighscore();
-            
+
+            //set the flag that it was checked for this game so it will only run once per game
+            this.setState({checkedHighscore: this.props.gameID});
         }
         return(
             <div className='game__info'>
@@ -101,7 +104,7 @@ class InfoPanel extends Component {
                     <Slide right>
                     <div className='carousel__title'>Current Fastest Time</div>
                         <div className='game__info__highscore carousel__text'>
-                            {this.state.fastestTime === null ? 'No record' : this.state.fastestTime + ' seconds'}
+                            {this.state.fastestTime === null || typeof this.state.fastestTime === 'undefined'  ? 'No record' : this.state.fastestTime + ' seconds'}
                         </div>
                     </Slide>
                     <Slide right>
@@ -114,7 +117,7 @@ class InfoPanel extends Component {
                         <div>
                             <div className='carousel__title'>Instructions</div>
                             <p className='carousel__text'>
-                                Find the poops and mark them with flags (right click) before someone steps on them!
+                                Find the targets and mark them with flags (right click) before someone steps on them!
                             </p>
                         </div>
                     </Slide>
@@ -123,7 +126,7 @@ class InfoPanel extends Component {
                             <div className='carousel__title'>Instructions</div>
                             <p className='carousel__text'>
                                 Click on a flower to reveal what's there. 
-                                If a number appears, that's the number of poops nearby.
+                                If a number appears, that's the number of targets nearby.
                             </p>
                         </div>
                     </Slide>

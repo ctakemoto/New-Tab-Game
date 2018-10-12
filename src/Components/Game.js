@@ -19,7 +19,8 @@ class Game extends Component {
           scoreFlagBonus: 300,                  //total points awarded if the user finds all the flags
           scoreTimeBonus: 2000,                 //awarded if the user wins, gets more points the quicker they finish
           scoreWinBonus: 100,                   //flat bonus awarded for winning the game
-          score: 0                              //final total score at end of the game
+          score: 0,                             //final total score at end of the game
+          gameID: 0                             //keep track of how many games done this session
         };
     }
 
@@ -43,12 +44,12 @@ class Game extends Component {
             if(board[coord[0]][coord[1]].state === 'flagged'){
                 board[coord[0]][coord[1]].state = 'unclicked'
                 //if the square being unflagged is a bomb, decrease number flagged
-                flagged = board[coord[0]][coord[1]].type === 'poop' ? flagged-1 : flagged;
+                flagged = board[coord[0]][coord[1]].type === 'target' ? flagged-1 : flagged;
             }
             else {
                 board[coord[0]][coord[1]].state = 'flagged'
                 //if the ssquare being flagged is a bomb, increase number flagged
-                flagged = board[coord[0]][coord[1]].type === 'poop' ? flagged+1 : flagged;
+                flagged = board[coord[0]][coord[1]].type === 'target' ? flagged+1 : flagged;
             }
 
              //update the board
@@ -80,7 +81,7 @@ class Game extends Component {
 
             board[coord[0]][coord[1]].state = 'clicked';
 
-            if(board[coord[0]][coord[1]].type === 'poop'){
+            if(board[coord[0]][coord[1]].type === 'target'){
                 //if a bomb is clicked on then the game is over
                 this.endGame(0);
             }
@@ -160,7 +161,7 @@ class Game extends Component {
         var time;
         //when first square clicked is a bomb, then start doesn't have time to be set
         if (this.state.start !== 0){
-            time = ((Date.now()- this.state.start)/1000).toFixed(2);
+            time = ((Date.now()- this.state.start)/1000).toFixed(1);
         }
         else {
             time = 0;
@@ -207,7 +208,7 @@ class Game extends Component {
             //check to see if the square has already been set as a bomb before
             if (board[currentSquare[0]][currentSquare[1]].type === 'safe'){
                 board[currentSquare[0]][currentSquare[1]].value = 'x';
-                board[currentSquare[0]][currentSquare[1]].type = 'poop';
+                board[currentSquare[0]][currentSquare[1]].type = 'target';
                 board = this.setSurroundingNumbers(board, currentSquare);
             }
             
@@ -219,7 +220,8 @@ class Game extends Component {
             numBombs: numBombs,
             numFlagged: 0,
             score: 0,
-            start: 0
+            start: 0,
+            gameID: this.state.gameID + 1
         });
     }
 
