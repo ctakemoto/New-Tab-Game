@@ -39,7 +39,7 @@ export const Square = props => {
                     {
                         props.state === 'flagged' ? <Emoji symbol="🏴" label="flag"/> :
                         props.value === 0 ? ' ' : 
-                        props.value === 'x' ? <Emoji symbol="💎" label="target"/> :
+                        props.value === 'x' ? <Emoji symbol="💎" label="diamond"/> :
                         props.value
                     
                     } 

@@ -109,14 +109,14 @@ button {
     position: relative;
     overflow: hidden;
     width: 300px;
-    height: 100px; }
+    height: 110px; }
     .game__info .game__info__carousel .carousel__title {
-      margin: 0 5px 5px 5px;
+      margin: 0 30px 5px 30px;
       font-size: 20px; }
     .game__info .game__info__carousel .carousel__text {
       text-align: left;
-      margin: 0 35px 0 35px;
-      font-size: 14px; }
+      margin: 0 30px 0 30px;
+      font-size: 15px; }
     .game__info .game__info__carousel .game__info__highscore {
       font-size: 40px;
       text-align: center; }

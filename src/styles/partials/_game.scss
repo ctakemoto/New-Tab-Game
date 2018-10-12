@@ -45,9 +45,7 @@ button {
     justify-self: center;
     align-self: center;
     padding: 20px;
-
     white-space: pre-wrap; //makes \n work in strings
-
 
     .game__info__time {
         margin: 10px;
@@ -69,16 +67,17 @@ button {
         position: relative;
         overflow: hidden;
         width: 300px;
-        height: 100px;
+        height: 110px;
 
         .carousel__title {
-            margin: 0 5px 5px 5px;
+            margin: 0 30px 5px 30px;
             font-size: 20px;
         }
         .carousel__text {
             text-align: left;
-            margin: 0 35px 0 35px;
-            font-size: 14px;
+            margin: 0 30px 0 30px;
+            font-size: 15px;
+            
         }
         .game__info__highscore {
             font-size: 40px;

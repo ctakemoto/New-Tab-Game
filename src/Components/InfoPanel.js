@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Fade from 'react-reveal/Fade';
 import makeCarousel from 'react-reveal/makeCarousel';
+import Emoji from './Emoji.js';
 import Slide from 'react-reveal/Slide';
 
 const Arrow = props => {
@@ -104,7 +105,7 @@ class InfoPanel extends Component {
                     <Slide right>
                     <div className='carousel__title'>Current Fastest Time</div>
                         <div className='game__info__highscore carousel__text'>
-                            {this.state.fastestTime === null || typeof this.state.fastestTime === 'undefined'  ? 'No record' : this.state.fastestTime + ' seconds'}
+                            {this.state.fastestTime === null || typeof this.state.fastestTime === 'undefined'  ? 'No record' : this.state.fastestTime + ' s'}
                         </div>
                     </Slide>
                     <Slide right>
@@ -115,9 +116,10 @@ class InfoPanel extends Component {
                     </Slide>
                     <Slide right>
                         <div>
-                            <div className='carousel__title'>Instructions</div>
+                            <div className='carousel__title'>Objective</div>
                             <p className='carousel__text'>
-                                Find the targets and mark them with flags (right click) before someone steps on them!
+                                ・Find all the hidden <Emoji symbol="💎" label="diamond"/>{'\n'}
+                                ・<Emoji symbol="🏴" label="flag"/> tiles that you think contain <Emoji symbol="💎" label="diamond"/>
                             </p>
                         </div>
                     </Slide>
@@ -125,15 +127,15 @@ class InfoPanel extends Component {
                         <div>
                             <div className='carousel__title'>Instructions</div>
                             <p className='carousel__text'>
-                                Click on a flower to reveal what's there. 
-                                If a number appears, that's the number of targets nearby.
+                                Right click on a tile to set a <Emoji symbol="🏴" label="flag"/>{'\n'} 
+                                Click on a tile to find hints and reveal what's hidden there. 
                             </p>
                         </div>
                     </Slide>
                 </Carousel>
                     
                 <Fade when={this.props.gameFinished} >
-                    <div className='game__info__time'>
+                    <div className='game__info__time emph'>
                         {'Finished in '+ this.props.time + ' seconds'}
                     </div>
                 </Fade>
