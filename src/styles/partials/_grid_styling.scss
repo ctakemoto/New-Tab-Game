@@ -1,7 +1,7 @@
 .app {
     display: grid;
-    grid-template-columns: 200px auto 200px;
-    grid-template-rows: 20px 30px repeat(2,75px)  auto;
+    grid-template-columns: 150px auto 150px;
+    grid-template-rows: 15px 30px repeat(2,75px) auto;
     grid-template-areas: 
     ". . settings"
     ". date ."
@@ -29,7 +29,7 @@
         justify-self: center;
     }
     
-    .settings {
+    .settings-button {
         grid-area: settings;
         justify-self: end;
     }

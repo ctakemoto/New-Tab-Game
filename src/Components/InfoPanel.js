@@ -42,6 +42,11 @@ class InfoPanel extends Component {
 
     componentDidMount() {
         //grab stored game data on component load
+        this.updateHighscore();
+    }
+
+    updateHighscore = () => {
+        //update the numbers displayed here from what's stored in Chrome
 
         var highscore, fastestTime, numGamesWon;
         //If there is a highscore stored in chrome then get it, otherwise set to 0
@@ -51,7 +56,6 @@ class InfoPanel extends Component {
             numGamesWon = typeof data.numGamesWon === 'undefined' ? 0 : data.numGamesWon;
             this.setState({highscore: highscore, fastestTime: fastestTime, numGamesWon: numGamesWon});
           });
-          
     }
 
     checkForHighscore = () => {
@@ -127,8 +131,8 @@ class InfoPanel extends Component {
                         <div>
                             <div className='carousel__title'>Instructions</div>
                             <p className='carousel__text'>
-                                Right click on a tile to set a <Emoji symbol="🏴" label="flag"/>{'\n'} 
-                                Click on a tile to find hints and reveal what's hidden there. 
+                                ・Right click on a tile to set a <Emoji symbol="🏴" label="flag"/>{'\n'} 
+                                ・Click to reveal hints 
                             </p>
                         </div>
                     </Slide>

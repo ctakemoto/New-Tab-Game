@@ -97,7 +97,7 @@ button {
   padding: 20px;
   white-space: pre-wrap; }
   .game__info .game__info__time {
-    margin: 10px; }
+    margin: 5px; }
   .game__info .game__info__score {
     margin: 5px;
     text-align: left; }
@@ -182,8 +182,8 @@ button {
 
 .app {
   display: grid;
-  grid-template-columns: 200px auto 200px;
-  grid-template-rows: 20px 30px repeat(2, 75px) auto;
+  grid-template-columns: 150px auto 150px;
+  grid-template-rows: 15px 30px repeat(2, 75px) auto;
   grid-template-areas: ". . settings" ". date ." ". greeting ." ". searchbar ." ". game .";
   grid-row-gap: 10px; }
   .app .date {
@@ -197,7 +197,7 @@ button {
   .app .searchbar {
     grid-area: searchbar;
     justify-self: center; }
-  .app .settings {
+  .app .settings-button {
     grid-area: settings;
     justify-self: end; }
   .app .game {
