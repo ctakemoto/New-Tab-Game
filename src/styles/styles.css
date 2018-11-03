@@ -139,7 +139,7 @@ body {
 
 button {
   color: white;
-  background-color: #852b60;
+  background-color: #852B60;
   box-shadow: 1px 1px 1px #262A41; }
 
 .game {
@@ -157,7 +157,7 @@ button {
   background-color: #F3F5EF; }
 
 .safe-clicked {
-  background-color: #59adb9; }
+  background-color: #59ADB9; }
 
 .target-clicked, .target-end {
   background-color: #DF466F; }
@@ -171,13 +171,13 @@ button {
   .game__info .emph {
     color: #262A41; }
   .game__info .arrow {
-    color: #852b60;
+    color: #852B60;
     text-shadow: 1px 1px 1px #262A41; }
   .game__info .carousel__title {
     color: #262A41; }
 
 .searchbar {
-  background-color: #59adb9; }
+  background-color: #59ADB9; }
   .searchbar .searchbar__button, .searchbar .searchbar__searchbox {
     border-color: grey; }
 

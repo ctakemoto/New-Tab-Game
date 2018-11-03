@@ -89,7 +89,7 @@ class InfoPanel extends Component {
     }
 
     render(){
-        if(this.props.gameFinished && this.state.checkedHighscore != this.props.gameID){
+        if(this.props.gameFinished && this.state.checkedHighscore !== this.props.gameID){
             //if the game is over, check for highscore
             this.checkForHighscore();
 
